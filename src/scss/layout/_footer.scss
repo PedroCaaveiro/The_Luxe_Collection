@@ -2,12 +2,15 @@
 @use '../base/variables' as v;
 
 .footer{
-    padding:v.$separacion;
-    background-color:v.$grisOscuro ;
+    
+    background-color:v.$grisOscuro;
+    padding-top:v.$separacion ;
+    
 
     
     .contenedor-footer{
-        padding-top: v.$separacion;
+        padding-top:v.$separacion;
+       
     
     }
     .copyright{
@@ -17,6 +20,13 @@
     .navegacion{
         a{
             margin-left: 15px;
+            
+        }
+        @include m.telefono{
+            align-items: center;
+        }
+        @include m.tablet{
+            align-items: center;
         }
     }
     

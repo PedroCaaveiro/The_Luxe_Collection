@@ -30,28 +30,48 @@
    
 }
 
-.navegacion{
 
+.navegacion {
     padding-top: 25px;
-   
+
     a {
         color: v.$blanco;
         margin: .3125rem;
         text-decoration: none;
         font-size: 2.2rem;
         margin-left: 15px;
+        position: relative;
+        display: inline-block;
+
+      
+        &::after {
+            content: '';
+            position: absolute;
+            width: 0%; 
+            height: 2px; 
+            background-color: v.$verde; 
+            bottom: 0; 
+            left: 0; 
+            transition: width 0.3s ease-in-out; 
+        }
+
+        &:hover {
+            color: v.$verde; 
+
+            &::after {
+                width: 100%; 
+            }
+        }
     }
-    @include m.tablet{
+
+    @include m.tablet {
         display: flex;
         flex-direction: column;
-       
-      a{
-        font-size:1.8rem;
-        margin-top: .3125rem;
-      }
-       
+
+        a {
+            font-size: 1.8rem;
+            margin-top: .3125rem;
+        }
     }
-   
-
-
 }
+

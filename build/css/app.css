@@ -370,14 +370,38 @@ h4 {
   max-width: 800px;
 }
 
+.inicio {
+  background-image: url(/src/img/header.jpg);
+}
+
 .header {
   background-color: #333333;
   padding: 1rem 0 3rem 0;
 }
+.header.inicio {
+  background-position: center center;
+  background-size: cover;
+}
+@media (max-width: 768px) {
+  .header.inicio {
+    min-height: 60rem;
+  }
+}
+@media (min-width: 1024px) {
+  .header.inicio {
+    min-height: 70rem;
+  }
+}
+
+.contenido_header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 .footer {
-  padding: 5rem;
   background-color: #333333;
+  padding-top: 5rem;
 }
 .footer .contenedor-footer {
   padding-top: 5rem;
@@ -388,6 +412,16 @@ h4 {
 }
 .footer .navegacion a {
   margin-left: 15px;
+}
+@media (max-width: 480px) {
+  .footer .navegacion {
+    align-items: center;
+  }
+}
+@media (max-width: 768px) {
+  .footer .navegacion {
+    align-items: center;
+  }
 }
 
 .contenido_header {
@@ -420,6 +454,24 @@ h4 {
   text-decoration: none;
   font-size: 2.2rem;
   margin-left: 15px;
+  position: relative;
+  display: inline-block;
+}
+.navegacion a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #71B100;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease-in-out;
+}
+.navegacion a:hover {
+  color: #71B100;
+}
+.navegacion a:hover::after {
+  width: 100%;
 }
 @media (max-width: 768px) {
   .navegacion {
