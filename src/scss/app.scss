@@ -3,3 +3,8 @@
 @use 'base/mixins';
 @use 'base/globales';
 @use 'base/utilidades';
+
+
+@use 'layout/_header';
+@use 'layout/_footer';
+@use 'layout/_navegacion';

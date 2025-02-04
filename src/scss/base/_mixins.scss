@@ -1,3 +1,5 @@
+@use '../base/variables' as *;
+
 /** Media Queries **/
 @mixin telefono {
     @media (min-width: #{$telefono}) {
@@ -6,16 +8,22 @@
 }
 
 @mixin tablet {
-    @media (min-width: #{$tablet}) {
+    @media (max-width: #{$tablet}) {
         @content;
     }
 }
   
 @mixin desktop {
-    @media (min-width: #{$desktop}) {
+    @media (max-width: #{$desktop}){
         @content;
     }
 }
+
+@mixin desktop-xl {
+    @media (max-width: 1440px) {
+      @content;
+    }
+  }
 @mixin grid($columnas, $espaciado ) {
     display: grid;
     gap: $espaciado;

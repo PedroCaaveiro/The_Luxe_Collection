@@ -1,0 +1,23 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v;
+
+.footer{
+    padding:v.$separacion;
+    background-color:v.$grisOscuro ;
+
+    
+    .contenedor-footer{
+        padding-top: v.$separacion;
+    
+    }
+    .copyright{
+        text-align: center;
+        color:v.$blanco;
+    }
+    .navegacion{
+        a{
+            margin-left: 15px;
+        }
+    }
+    
+}
