@@ -5,8 +5,24 @@
     .contenedor-anuncios {
         @include m.grid(3, 2rem);
 
-        .iconos-caracteristicas{}
+        .iconos-caracteristicas{
 
+            li{
+
+                img{
+                    width: 5%;
+                    margin-right: 8px;
+                }
+                p{
+                    margin-left:2px
+                }
+            }
+          
+        }
+        
+           
+          
+        
         
     }
 
