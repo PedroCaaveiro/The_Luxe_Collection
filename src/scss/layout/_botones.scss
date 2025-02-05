@@ -3,5 +3,6 @@
 
 .boton-amarillo{
     @include m.boton(v.$amarillo,inline-block);
+    color:red;
 }
 
