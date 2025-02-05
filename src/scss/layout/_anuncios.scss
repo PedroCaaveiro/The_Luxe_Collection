@@ -1,28 +1,14 @@
 @use '../base/mixins' as m;
 @use '../base/variables' as v;
 
+
+
+
 @include m.tablet {
     .contenedor-anuncios {
-        @include m.grid(3, 2rem);
-
-        .iconos-caracteristicas{
-
-            li{
-
-                img{
-                    width: 5%;
-                    margin-right: 8px;
-                }
-                p{
-                    margin-left:2px
-                }
-            }
-          
-        }
-        
-           
-          
-        
+        @include m.grid(3, 0);
+     
+       
         
     }
 
@@ -30,6 +16,13 @@
 @include m.desktop {
     .contenedor-anuncios {
         @include m.grid(3, 2rem);
+    }
+
+}
+
+@include m.telefono{
+    .contenedor-anuncios {
+        @include m.grid(1, 2rem);
     }
 
 }
