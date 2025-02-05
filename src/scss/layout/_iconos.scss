@@ -1,0 +1,26 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v;
+
+.iconos-nosotros{
+    display: flex;
+    flex-direction: row;
+@include  m.telefono{
+
+    display: flex;
+    flex-direction: column;
+    
+}
+
+    
+}
+
+.icono{
+    
+text-align: center;
+    img{
+height: 10rem;
+    }
+    h3{
+text-transform: uppercase;
+    }
+}
