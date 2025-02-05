@@ -520,4 +520,51 @@ html, body {
 .icono h3 {
   text-transform: uppercase;
 }
+
+@media (max-width: 768px) {
+  .contenedor-anuncios {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .contenedor-anuncios {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.anuncio {
+  background-color: #e1e1e1;
+  border: 1px solid #333333;
+}
+.anuncio .contenido-anuncio {
+  padding: 2rem;
+}
+.anuncio h3, .anuncio p {
+  margin: 0;
+}
+.anuncio .precio {
+  color: #71B100;
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+.iconos-caracteristicas {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+.iconos-caracteristicas li {
+  flex: 1;
+  display: flex;
+}
+.iconos-caracteristicas li img {
+  flex: 0 0 3rem;
+  margin-right: 1rem;
+}
+.iconos-caracteristicas li p {
+  font-weight: 900;
+}
 /*# sourceMappingURL=app.css.map */
