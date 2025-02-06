@@ -1,0 +1,25 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v;
+
+.imagen-contacto{
+    background-image: url(/src/img/encuentra.jpg);
+    background-position: center center;
+    background-size: cover;
+    padding: v.$separacion * 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top:5px solid v.$negro;
+    border-bottom: 5px solid v.$negro;
+
+
+    h2{
+        font-size: 4rem;
+        font-weight:v.$black;
+        color:v.$blanco;
+    }
+    p{
+        font-size: 1.8rem;
+        color:v.$blanco;
+    }
+}

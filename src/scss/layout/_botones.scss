@@ -1,8 +1,28 @@
 @use '../base/mixins' as m;
 @use '../base/variables' as v;
 
+
+.alinear-derecha{
+    display: flex;
+    justify-content: center
+}
 .boton-amarillo{
-    @include m.boton(v.$amarillo,inline-block);
+    @include m.boton(v.$amarillo,block,v.$verde);
+    width: 100%;
+    text-align: center;
+ 
+}
+   
+
+.boton-amarillo-block{
+    @include m.boton(v.$amarillo,inline-block,v.$verde);
+   
+    text-align: center
+    
+   
+}
+.boton-verde{
+    @include m.boton(v.$verde,inline-block,v.$amarillo);
     
 }
 

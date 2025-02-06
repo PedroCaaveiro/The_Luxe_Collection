@@ -6,32 +6,72 @@
 
 @include m.tablet {
     .contenedor-anuncios {
-        @include m.grid(3, 0);
-     
-       
+        @include m.grid(3,2rem)
         
     }
+    .contenido-anuncio{
+        display: flex;
+        flex-direction: column;
+        align-items: center
+       
+    }
+    
 
 }
 @include m.desktop {
     .contenedor-anuncios {
-        @include m.grid(3, 2rem);
+        @include m.grid(3,3rem);
     }
-
+.contenido-anuncio{
+    display: flex;
+    flex-direction: column;
+    align-items: center
+  
+}
+.iconos-caracteristicas li {
+    display: flex;
+    align-items: center;
+    gap: 10px; // Espacio entre imagen y texto
+}
+.iconos-caracteristicas p {
+    padding: 10px;
+}
 }
 
 @include m.telefono{
     .contenedor-anuncios {
         @include m.grid(1, 2rem);
+        
+        
     }
+    .contenido-anuncio{
+        display: flex;
+        flex-direction: column;
+        align-items: center
+        
+    }
+    .iconos-caracteristicas li {
+        display: flex;
+        align-items: center;
+        gap: 10px; // Espacio entre imagen y texto
+    }
+    .iconos-caracteristicas p {
+        padding: 10px;
+    }
+
+   
 
 }
 .anuncio{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background-color:v.$gris;
     border: 1px solid v.$grisOscuro;
-
+    
     .contenido-anuncio{
         padding:2rem ;
+        
     }
     h3, p{
 margin: 0;

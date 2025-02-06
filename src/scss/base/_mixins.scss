@@ -27,17 +27,18 @@
     grid-template-columns: repeat($columnas, 1fr);
 }
 
-@mixin boton($bgcolor,$display){
+@mixin boton($bgcolor, $display, $hoverColor) {
     display: $display;
-    background-color:$bgcolor;
-    color:$blanco;
-    font-weight:$bold;
+    background-color: $bgcolor;
+    color: $blanco;
+    font-weight: $bold;
     text-decoration: none;
     padding: 1rem 3rem;
     margin-top: $separacion;
-    border-radius:25px;
-    &:hover{
-
-        background-color:$verde;
+    border-radius: 25px;
+    width: auto; // Asegura que no ocupe ancho completo
+    max-width: fit-content; // Ajusta al contenido
+    &:hover {
+        background-color: $hoverColor;
     }
 }

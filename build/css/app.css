@@ -370,6 +370,11 @@ h4 {
   max-width: 800px;
 }
 
+.alinear-derecha {
+  display: flex;
+  justify-content: right;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -524,15 +529,33 @@ html, body {
 @media (max-width: 768px) {
   .contenedor-anuncios {
     display: grid;
-    gap: 0;
+    gap: 2rem;
     grid-template-columns: repeat(3, 1fr);
+  }
+  .contenido-anuncio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 @media (min-width: 1024px) {
   .contenedor-anuncios {
     display: grid;
-    gap: 2rem;
+    gap: 3rem;
     grid-template-columns: repeat(3, 1fr);
+  }
+  .contenido-anuncio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .iconos-caracteristicas li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .iconos-caracteristicas p {
+    padding: 10px;
   }
 }
 @media (max-width: 480px) {
@@ -541,8 +564,24 @@ html, body {
     gap: 2rem;
     grid-template-columns: repeat(1, 1fr);
   }
+  .contenido-anuncio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .iconos-caracteristicas li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .iconos-caracteristicas p {
+    padding: 10px;
+  }
 }
 .anuncio {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: #e1e1e1;
   border: 1px solid #333333;
 }
@@ -575,7 +614,30 @@ html, body {
   font-weight: 900;
 }
 
+.alinear-derecha {
+  display: flex;
+  justify-content: center;
+}
+
 .boton-amarillo {
+  display: block;
+  background-color: #E08709;
+  color: #FFFFFF;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 1rem 3rem;
+  margin-top: 5rem;
+  border-radius: 25px;
+  width: auto;
+  max-width: fit-content;
+  width: 100%;
+  text-align: center;
+}
+.boton-amarillo:hover {
+  background-color: #71B100;
+}
+
+.boton-amarillo-block {
   display: inline-block;
   background-color: #E08709;
   color: #FFFFFF;
@@ -584,8 +646,48 @@ html, body {
   padding: 1rem 3rem;
   margin-top: 5rem;
   border-radius: 25px;
+  width: auto;
+  max-width: fit-content;
+  text-align: center;
 }
-.boton-amarillo:hover {
+.boton-amarillo-block:hover {
   background-color: #71B100;
+}
+
+.boton-verde {
+  display: inline-block;
+  background-color: #71B100;
+  color: #FFFFFF;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 1rem 3rem;
+  margin-top: 5rem;
+  border-radius: 25px;
+  width: auto;
+  max-width: fit-content;
+}
+.boton-verde:hover {
+  background-color: #E08709;
+}
+
+.imagen-contacto {
+  background-image: url(/src/img/encuentra.jpg);
+  background-position: center center;
+  background-size: cover;
+  padding: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 5px solid #000000;
+  border-bottom: 5px solid #000000;
+}
+.imagen-contacto h2 {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #FFFFFF;
+}
+.imagen-contacto p {
+  font-size: 1.8rem;
+  color: #FFFFFF;
 }
 /*# sourceMappingURL=app.css.map */
