@@ -36,6 +36,11 @@
 .iconos-caracteristicas p {
     padding: 10px;
 }
+.precio{
+    color:v.$verde;
+    font-weight: v.$bold;
+    font-size: 3rem;
+}
 }
 
 @include m.telefono{
@@ -86,6 +91,7 @@ margin: 0;
     display: flex;
     list-style: none;
     padding: 0;
+    max-width:40rem ;
     li{
         flex: 1;
         display: flex;

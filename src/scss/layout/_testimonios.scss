@@ -1,52 +1,69 @@
 @use '../base/mixins' as m;
 @use '../base/variables' as v;
 
+.testimonios {
+    width: auto;
+    font-size: 2.4rem;
+    padding: 2rem;
 
-@include m.telefono{
+    blockquote {
+        position: relative;
+        padding-left: 5rem;
 
-    .testimonios{
-height: 650px;
-
-font-size:10px;
-
+        &::before {
+            content: '';
+            background-image: url(/src/img/comilla.svg);
+            width: 6rem;
+            height: 6rem;
+            display: block;
+            position: absolute;
+            left: -2rem;
+        }
 
     }
-    
-   
+
+    p {
+        text-align: right;
+        color: v.$blanco;
+    }
+
+    .reseñas {
+        background-color: v.$verde;
+        padding-inline: 2rem;
+        color: v.$blanco;
+        height:20%;
+        border-radius: 5rem;
+
+    }
+}
+
+@include m.telefono {
+
+    .testimonios {
+
+        height: 500px;
+        font-size: 20px;
+
+        .reseñas {
+            height: 360px;
+        }
+    }
+
 
 }
 
-.testimonios{
-width: auto;
-font-size:2.4rem;
-padding: 2rem;
+@include m.tablet {
 
-blockquote{
-position: relative;
-padding-left: 5rem;
+    .testimonios {
 
-&::before{
-    content:'';
-    background-image: url(/src/img/comilla.svg);
-    width: 6rem;
-    height: 6rem;
-    display: block;
-    position: absolute;
-    left: -2rem;
-}
+        height: 600px;
+        font-size: 20px;
 
-}
-p{
-    text-align: right;
-    color:v.$blanco;
-}
-.reseñas{
-    background-color: v.$verde;
-    padding-inline: 2rem;
-    color:v.$blanco;
-    height:20%;
-    border-radius:5rem;
+        .reseñas {
+            height: 460px;
+        }
+    }
 
-}
+
 }
 
