@@ -4,8 +4,22 @@
 .contenido_header {
     display: flex;
     flex-direction: column;
-
     
+    @include m.tablet{
+        
+        h1{
+
+            font-size:3rem;
+        }
+    }
+    @include m.telefono{
+
+        h1{
+            
+            font-size:1.6rem;
+        }
+    }
+   
 }
 
 .barra {
@@ -22,12 +36,14 @@
         display: flex;
         flex-direction: column;
         align-items:center;
-        
+    }
+    @include m.telefono{
+        display: flex;
+        flex-direction: column;
+        align-items:center;
     
     }
   
-
-   
 }
 
 
@@ -65,6 +81,15 @@
     }
 
     @include m.tablet {
+        display: flex;
+        flex-direction: column;
+
+        a {
+            font-size: 1.8rem;
+            margin-top: .3125rem;
+        }
+    }
+    @include m.telefono {
         display: flex;
         flex-direction: column;
 

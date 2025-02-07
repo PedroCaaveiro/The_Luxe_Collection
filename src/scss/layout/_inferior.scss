@@ -1,0 +1,67 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v;
+
+
+@include m.desktop{
+    .seccion-inferior{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        column-gap: 2rem;
+    }
+    
+}
+@include m.tablet{
+    .seccion-inferior{
+           display: grid;
+           grid-template-columns: repeat(2,1fr);
+           column-gap: 2rem;
+       }
+   
+   }
+   @include m.telefono{
+    .seccion-inferior{
+           display: grid;
+           grid-template-columns: repeat(1,1fr);
+           column-gap: 2rem;
+       }
+   
+   }
+.entrada-blog{
+    margin-bottom: 2rem;
+
+    @include m.desktop{
+    display: grid;
+    grid-template-columns:repeat(1,2fr);
+    column-gap: 2rem;
+    }
+    &:last-of-type{
+        margin-bottom: 0;
+    }
+}
+.texto-entrada{
+    a{
+color:v.$negro;
+margin-top: 2rem;
+display: block;
+
+@include m.tablet{
+    margin-top:0;
+}
+
+    }
+    h4{
+        margin:0;
+        line-height: 1.4;
+      &::after{
+        content: '';
+        display: block;
+        width: 15rem;
+        height: .5rem;
+        background-color:v.$verde;
+        margin-top: 1rem;
+      }  
+    }
+    span{
+        color:v.$amarillo;
+    }
+}

@@ -1,0 +1,52 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v;
+
+
+@include m.telefono{
+
+    .testimonios{
+height: 650px;
+
+font-size:10px;
+
+
+    }
+    
+   
+
+}
+
+.testimonios{
+width: auto;
+font-size:2.4rem;
+padding: 2rem;
+
+blockquote{
+position: relative;
+padding-left: 5rem;
+
+&::before{
+    content:'';
+    background-image: url(/src/img/comilla.svg);
+    width: 6rem;
+    height: 6rem;
+    display: block;
+    position: absolute;
+    left: -2rem;
+}
+
+}
+p{
+    text-align: right;
+    color:v.$blanco;
+}
+.reseñas{
+    background-color: v.$verde;
+    padding-inline: 2rem;
+    color:v.$blanco;
+    height:20%;
+    border-radius:5rem;
+
+}
+}
+

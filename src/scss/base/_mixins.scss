@@ -1,23 +1,24 @@
 @use '../base/variables' as *;
 
 /** Media Queries **/
+
 @mixin telefono {
     @media (max-width: #{$telefono}) {
-        @content;
+      @content;
     }
-}
-
-@mixin tablet {
-    @media (max-width: #{$tablet}) {
-        @content;
-    }
-}
+  }
   
-@mixin desktop {
-    @media (min-width: #{$desktop}){
-        @content;
+  @mixin tablet {
+    @media (min-width: #{$telefono + 1}) and (max-width: #{$tablet}) {
+      @content;
     }
-}
+  }
+  
+  @mixin desktop {
+    @media (min-width: #{$tablet + 1}) {
+      @content;
+    }
+  }
 
 
   
