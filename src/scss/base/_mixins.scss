@@ -37,9 +37,12 @@
     padding: 1rem 3rem;
     margin-top: $separacion;
     border-radius: 25px;
-    width: auto; // Asegura que no ocupe ancho completo
-    max-width: fit-content; // Ajusta al contenido
+    width: auto; 
+    max-width: fit-content; 
+    border: none;
+
     &:hover {
         background-color: $hoverColor;
+        cursor: pointer;
     }
 }

@@ -664,11 +664,13 @@ html, body {
   border-radius: 25px;
   width: auto;
   max-width: fit-content;
+  border: none;
   width: 100%;
   text-align: center;
 }
 .boton-amarillo:hover {
   background-color: #71B100;
+  cursor: pointer;
 }
 
 .boton-amarillo-block {
@@ -682,10 +684,12 @@ html, body {
   border-radius: 25px;
   width: auto;
   max-width: fit-content;
+  border: none;
   text-align: center;
 }
 .boton-amarillo-block:hover {
   background-color: #71B100;
+  cursor: pointer;
 }
 
 .boton-verde {
@@ -699,9 +703,11 @@ html, body {
   border-radius: 25px;
   width: auto;
   max-width: fit-content;
+  border: none;
 }
 .boton-verde:hover {
   background-color: #E08709;
+  cursor: pointer;
 }
 
 .imagen-contacto {
@@ -760,6 +766,10 @@ html, body {
   margin-bottom: 0;
 }
 
+.informacion-meta span {
+  color: #E08709;
+}
+
 .texto-entrada a {
   color: #000000;
   margin-top: 2rem;
@@ -781,9 +791,6 @@ html, body {
   height: 0.5rem;
   background-color: #71B100;
   margin-top: 1rem;
-}
-.texto-entrada span {
-  color: #E08709;
 }
 
 .testimonios {
@@ -872,5 +879,44 @@ html, body {
     margin: 0;
     padding-left: 1rem 0 3rem 0;
   }
+}
+
+.formulario p {
+  font-size: 1.4rem;
+  color: #333333;
+  margin: 2rem 0 0 0;
+}
+.formulario legend {
+  font-size: 2rem;
+  color: #333333;
+}
+.formulario label {
+  font-weight: bold;
+  text-transform: uppercase;
+  display: block;
+}
+.formulario input:not([type=submit]), .formulario textarea, .formulario select {
+  padding: 1rem;
+  display: block;
+  width: 100%;
+  background-color: #FFFFFF;
+  border: 1px solid #e1e1e1;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+}
+.formulario textarea {
+  height: 200px;
+  resize: none;
+  overflow: auto;
+}
+.formulario .forma-contacto {
+  display: flex;
+  justify-content: space-around;
+  max-width: 30rem;
+  align-items: center;
+}
+.formulario input[type=radio] {
+  margin: 0;
+  width: auto;
 }
 /*# sourceMappingURL=app.css.map */
