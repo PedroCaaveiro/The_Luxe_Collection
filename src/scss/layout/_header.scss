@@ -13,6 +13,9 @@ html, body {
 }
 
 
+
+
+
 .header{
     background-color:v.$grisOscuro;
     padding: 1rem 0 3rem 0;
@@ -27,6 +30,8 @@ html, body {
         }
        
         .contenido_header{
+
+               
             @include m.tablet{
                 min-height: 70rem;
                     }
@@ -36,11 +41,13 @@ html, body {
                          
                 
                     }
+                    
         }
        
-        
-
+       
+       
     }
+    
 }
 .contenido_header{
     display: flex;
