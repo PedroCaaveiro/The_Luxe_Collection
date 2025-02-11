@@ -1,0 +1,37 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v;
+
+.dark-mode-boton{
+    background-color:rgba(v.$grisOscuro,0.7);
+    
+    p,h1,h2,h3,h4,a{
+        color:v.$blanco;
+    }
+    .anuncio{
+        border: 2px solid v.$blanco;
+    }
+    
+    .contenido-anuncio{
+        background-color:rgb(167, 167, 167);
+    }
+    .imagen-contacto{
+        border: 2px solid v.$blanco;
+    }
+    .imagen{
+        border: 2px solid v.$blanco;
+    }
+    .footer{
+        border: 2px solid v.$blanco;
+    }
+    .formulario{
+        legend{
+            color:v.$blanco;
+            
+           
+        }
+        p{
+            color:v.$blanco;
+        }
+   
+}
+}

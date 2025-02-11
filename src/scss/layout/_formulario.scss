@@ -16,6 +16,7 @@
         font-weight: bold;
         text-transform: uppercase;
         display: block;
+        
        
     }
     input:not([type="submit"]),textarea,select{
@@ -23,7 +24,7 @@
         display: block;
         width: 100%;
         background-color: v.$blanco;
-        border:1px solid v.$gris;
+        border:1px solid v.$negro;
         border-radius: 1rem;
         margin-bottom: 2rem;
 

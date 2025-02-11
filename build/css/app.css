@@ -376,6 +376,34 @@ h4 {
   justify-content: right;
 }
 
+.dark-mode-boton {
+  background-color: rgba(51, 51, 51, 0.7);
+}
+.dark-mode-boton p, .dark-mode-boton h1, .dark-mode-boton h2, .dark-mode-boton h3, .dark-mode-boton h4, .dark-mode-boton a {
+  color: #FFFFFF;
+}
+.dark-mode-boton .anuncio {
+  border: 2px solid #FFFFFF;
+}
+.dark-mode-boton .contenido-anuncio {
+  background-color: rgb(167, 167, 167);
+}
+.dark-mode-boton .imagen-contacto {
+  border: 2px solid #FFFFFF;
+}
+.dark-mode-boton .imagen {
+  border: 2px solid #FFFFFF;
+}
+.dark-mode-boton .footer {
+  border: 2px solid #FFFFFF;
+}
+.dark-mode-boton .formulario legend {
+  color: #FFFFFF;
+}
+.dark-mode-boton .formulario p {
+  color: #FFFFFF;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -435,11 +463,6 @@ html, body {
 .footer .navegacion a {
   margin-left: 15px;
 }
-@media (max-width: 480px) {
-  .footer .navegacion {
-    align-items: center;
-  }
-}
 @media (min-width: 481px) and (max-width: 768px) {
   .footer .navegacion {
     align-items: center;
@@ -461,6 +484,38 @@ html, body {
   }
 }
 
+.derecha {
+  display: flex;
+}
+.derecha .dark-mode {
+  margin-left: 2rem;
+  width: 3rem;
+  margin-top: 2.5rem;
+  filter: invert(100%);
+}
+.derecha .dark-mode:hover {
+  cursor: pointer;
+}
+@media (max-width: 480px) {
+  .derecha {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .derecha .dark-mode {
+    width: 3rem;
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .derecha {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 .barra {
   display: flex;
   flex-direction: row;
@@ -474,7 +529,6 @@ html, body {
   .barra {
     display: flex;
     flex-direction: column;
-    align-items: center;
   }
 }
 @media (max-width: 480px) {
@@ -516,7 +570,7 @@ html, body {
 @media (min-width: 481px) and (max-width: 768px) {
   .navegacion {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   }
   .navegacion a {
     font-size: 1.8rem;
@@ -928,7 +982,7 @@ html, body {
   display: block;
   width: 100%;
   background-color: #FFFFFF;
-  border: 1px solid #e1e1e1;
+  border: 1px solid #000000;
   border-radius: 1rem;
   margin-bottom: 2rem;
 }
