@@ -1,3 +1,4 @@
+
 <footer class="footer seccion">
         <div class="contenedor contenedor_footer">
             <nav class="navegacion">
@@ -11,3 +12,4 @@
        
         <p class="copyright">Todos los derechos reservados <?php echo date('Y');?> &copy;</p>
     </footer>
+
