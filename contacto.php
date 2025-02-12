@@ -9,33 +9,8 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="contenedor contenido_header">
-            <div class="barra">
-                
-                    <img src="src/img/logo.png" alt="logotipo de bienes raices">
-                
-                    <div class="mobile-menu">
-                        <img src="src/img/barras.svg" alt="menu responsive">
-                    </div>
-               <div class="derecha">
-                
-                <nav class="navegacion">
-                    <a href="index.html">Inicio</a>
-                    <a href="nosotros.html">Nosotros</a>
-                    <a href="anuncios.html">Anuncios</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="contacto.html">Contacto</a>
-
-                </nav>
-                <img class="dark-mode" src="src/img/dark-mode.svg" alt="">
-
-               </div>
-
-            </div>
-            
-        </div>
-    </header>
+   <?php include 'includes/templates/header.php';?>
+   
     <main class="contenedor seccion">
         <h1>Contacto</h1>
         <picture>
@@ -94,18 +69,7 @@
 
         </form>
     </main>
-    <footer class="footer seccion">
-        <div class="contenedor contenedor_footer">
-            <nav class="navegacion">
-                <a href="index.html">Inicio</a>
-                <a href="nosotros.html">Nosotros</a>
-                <a href="anuncios.html">Anuncios</a>
-                <a href="blog.html">Blog</a>
-                <a href="contacto.html">Contacto</a>
-            </nav>
-        </div>
-        <p class="copyright">Todos los derechos reservados 2025 &copy;</p>
-    </footer>
+    <?php include 'includes/templates/footer.php';?>
     <script src="src/js/app.js"></script>
 </body>
 

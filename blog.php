@@ -9,32 +9,8 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="contenedor contenido_header">
-            <div class="barra">
-                
-                    <img src="src/img/logo.png" alt="logotipo de bienes raices">
-                    <div class="mobile-menu">
-                        <img src="src/img/barras.svg" alt="menu responsive">
-                    </div>
-               <div class="derecha">
-                
-                <nav class="navegacion">
-                    <a href="index.html">Inicio</a>
-                    <a href="nosotros.html">Nosotros</a>
-                    <a href="anuncios.html">Anuncios</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="contacto.html">Contacto</a>
+<?php include 'includes/templates/header.php';?>
 
-                </nav>
-                <img class="dark-mode" src="src/img/dark-mode.svg" alt="">
-
-               </div>
-
-            </div>
-           
-        </div>
-    </header>
     <main class="contenedor seccion contenido-centrado">
         <h1>Nuestro Blog</h1>
         <article class="entrada-blog">
@@ -42,7 +18,7 @@
                 <img src="src/img/blog1.jpg" alt="texto entrada blog" loading="lazy">
             </div>
             <div class="texto-entrada">
-                <a href="entrada.html">
+                <a href="entrada.php">
                     <h4>Terraza en el techo de tu casa </h4>
                     <p class="informacion-meta">Escrito el:<span>20/10/2021</span>por:<span>Admin</span></p>
                     <p>Consejos para construi una terraza en el tech de tu casa con los mejores materiales y
@@ -55,7 +31,7 @@
                 <img src="src/img/blog2.jpg" alt="texto entrada blog" loading="lazy">
             </div>
             <div class="texto-entrada">
-                <a href="entrada.html">
+                <a href="entrada.php">
                     <h4>Terraza en el techo de tu casa </h4>
                     <p class="informacion-meta">Escrito el:<span>20/10/2021</span>por:<span>Admin</span></p>
                     <p>Consejos para construi una terraza en el tech de tu casa con los mejores materiales y
@@ -68,7 +44,7 @@
                 <img src="src/img/blog3.jpg" alt="texto entrada blog" loading="lazy">
             </div>
             <div class="texto-entrada">
-                <a href="entrada.html">
+                <a href="entrada.php">
                     <h4>Terraza en el techo de tu casa </h4>
                     <p class="informacion-meta">Escrito el:<span>20/10/2021</span>por:<span>Admin</span></p>
                     <p>Consejos para construi una terraza en el tech de tu casa con los mejores materiales y
@@ -81,7 +57,7 @@
                 <img src="src/img/blog4.jpg" alt="texto entrada blog" loading="lazy">
             </div>
             <div class="texto-entrada">
-                <a href="entrada.html">
+                <a href="entrada.php">
                     <h4>Terraza en el techo de tu casa </h4>
                     <p class="informacion-meta">Escrito el:<span>20/10/2021</span>por:<span>Admin</span></p>
                     <p>Consejos para construi una terraza en el tech de tu casa con los mejores materiales y
@@ -90,18 +66,7 @@
             </div>
         </article>
     </main>
-    <footer class="footer seccion">
-        <div class="contenedor contenedor_footer">
-            <nav class="navegacion">
-                <a href="index.html">Inicio</a>
-                <a href="nosotros.html">Nosotros</a>
-                <a href="anuncios.html">Anuncios</a>
-                <a href="blog.html">Blog</a>
-                <a href="contacto.html">Contacto</a>
-            </nav>
-        </div>
-        <p class="copyright">Todos los derechos reservados 2025 &copy;</p>
-    </footer>
+    <?php include 'includes/templates/footer.php';?>
     <script src="src/js/app.js"></script>
 </body>
 
