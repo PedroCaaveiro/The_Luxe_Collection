@@ -9,7 +9,12 @@
 </head>
 
 <body>
-<?php include 'includes/templates/header.php';?>
+<?php
+
+require_once 'includes/templates/funciones.php';
+incluirTemplate('header');
+
+?>
     <main class="contenedor seccion">
         <h2>Casas y Departamentos en Venta</h2>
 
@@ -204,7 +209,7 @@
             </div> <!--fin anuncio-->
         </div>
     </main>
-    <?php include 'includes/templates/footer.php';?>
+    <?php incluirTemplate('footer'); ?>
     <script src="src/js/app.js"></script>
 </body>
 

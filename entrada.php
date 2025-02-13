@@ -11,7 +11,12 @@
 <body>
  
 <body>
-<?php include 'includes/templates/header.php';?>
+<?php
+
+require_once 'includes/templates/funciones.php';
+incluirTemplate('header');
+
+?>
 
 <main class="contenedor seccion contenido-centrado">
 <h1>Guía para la decoracion de tu hogar </h1>
@@ -29,7 +34,7 @@
 
 </main>
 
-<?php include 'includes/templates/footer.php';?>
+<?php incluirTemplate('footer'); ?>
     <script src="src/js/app.js"></script>
 </body>
 

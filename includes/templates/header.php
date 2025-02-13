@@ -1,11 +1,13 @@
-<header class="header <?php echo isset($inicio) ? 'inicio' : '';?>">
+<link rel="stylesheet" href="/build/css/app.css">
+
+<header class="header <?php echo $inicio ? 'inicio' : '';?>">
         <div class="contenedor contenido_header">
             <div class="barra">
                 
-                    <img src="src/img/logo.png" alt="logotipo de bienes raices">
+                    <img src="/src/img/logo.png" alt="logotipo de bienes raices">
                 
                     <div class="mobile-menu">
-                        <img src="src/img/barras.svg" alt="menu responsive">
+                        <img src="/src/img/barras.svg" alt="menu responsive">
                     </div>
                <div class="derecha">
                 
@@ -17,7 +19,7 @@
                     <a href="contacto.php">Contacto</a>
 
                 </nav>
-                <img class="dark-mode" src="src/img/dark-mode.svg" alt="">
+                <img class="dark-mode" src="/src/img/dark-mode.svg" alt="">
 
                </div>
 

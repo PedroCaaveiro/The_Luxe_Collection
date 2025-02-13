@@ -13,8 +13,8 @@
 <?php
 
 require_once 'includes/templates/funciones.php';
-$inicio = true;
-incluirTemplate('header');
+
+incluirTemplate('header',$inicio = true);
 
 ?>
 
@@ -202,7 +202,7 @@ incluirTemplate('header');
         </section>
         
     </div>
-    <?php include 'includes/templates/footer.php';?>
+   <?php incluirTemplate('footer'); ?>
     <script src="src/js/app.js"></script>
 </body>
 

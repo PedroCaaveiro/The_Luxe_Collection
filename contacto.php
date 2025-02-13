@@ -9,7 +9,12 @@
 </head>
 
 <body>
-   <?php include 'includes/templates/header.php';?>
+<?php
+
+require_once 'includes/templates/funciones.php';
+incluirTemplate('header');
+
+?>
    
     <main class="contenedor seccion">
         <h1>Contacto</h1>
@@ -69,7 +74,7 @@
 
         </form>
     </main>
-    <?php include 'includes/templates/footer.php';?>
+    <?php incluirTemplate('footer'); ?>
     <script src="src/js/app.js"></script>
 </body>
 
