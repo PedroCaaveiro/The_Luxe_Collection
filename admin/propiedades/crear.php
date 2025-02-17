@@ -40,7 +40,7 @@ if (isset($_GET['mensaje']) && $_GET['mensaje'] == 'exito') {
         <fieldset>
             <legend>Información General</legend>
             <label for="titulo">Titulo:</label>
-            <input type="text" id="titulo" name="titulo" placeholder="Titulo Propiedad">
+            <input type="text" id="titulo" name="titulo" placeholder="Titulo Propiedad" >
 
             <label for="precio">Precio:</label>
             <input type="number" id="precio" name="precio" placeholder="Precio Propiedad">
@@ -59,7 +59,7 @@ if (isset($_GET['mensaje']) && $_GET['mensaje'] == 'exito') {
             <input type="number" id="habitaciones" name="habitaciones" placeholder="Habitaciones Propiedad" min="1" max="9">
 
             <label for="wc">Baños:</label>
-            <input type="number" id="wc" name="wc" placeholder="Baños Propiedad" min="1" max="9">
+            <input type="number" id="wc" name="wc" placeholder="Baños Propiedad" min="1" max="9" value="">
 
             <label for="estacionamiento">Estacionamiento:</label>
             <input type="number" id="estacionamiento" name="estacionamiento" placeholder="Estacionamiento Propiedad" min="1" max="9">
@@ -67,10 +67,18 @@ if (isset($_GET['mensaje']) && $_GET['mensaje'] == 'exito') {
 
         <fieldset>
         <legend>Vendedor</legend>
-<select name="vendedor" required>  
+<select name="vendedor">  
     <option value="" disabled selected>Seleccionar Vendedor</option>  
-    <option value="1">Pedro</option>
-    <option value="2">Maria</option>
+    <?php 
+    if (!empty($_SESSION['vendedores'])) {
+        foreach ($_SESSION['vendedores'] as $vendedor) {
+            echo "<option value='" . htmlspecialchars($vendedor['id']) . "'>" . htmlspecialchars($vendedor['nombre']) . " ".  htmlspecialchars($vendedor['apellido']) . "</option>";
+        }
+    } else {
+        echo "<option value='' disabled>No hay vendedores disponibles</option>";
+    }
+    ?>
+
 </select>
 
 

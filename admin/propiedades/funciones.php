@@ -7,7 +7,21 @@ require_once '../../includes/config/database.php';
 
 
 
+
 $db = conectarDb();
+
+$titulo = ''; 
+$precio = '';
+$imagen = '';
+$descripcion = ''; 
+$habitaciones = '';
+$wc =''; 
+$estacionamiento = '';
+$vendedores_id = '';
+
+
+
+
 
 $errores = [];
 
@@ -23,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST') {
     $wc = $_POST['wc'];
     $estacionamiento = $_POST['estacionamiento'];
     $vendedores_id = $_POST['vendedor'];
+    $creado = date('Y/m/d');
 
     if (empty($titulo)) {
         $errores[] = "Añadir el titulo";
@@ -59,8 +74,11 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST') {
         exit;
         
     }else{
-        crear($db,$titulo , $precio, $imagen, $descripcion, $habitaciones,$wc, $estacionamiento,$vendedores_id);
+        crear($db,$titulo , $precio, $imagen, $descripcion, $habitaciones,$wc, $estacionamiento,$creado,$vendedores_id);
+      
+       
     }
+       
    
     
 
@@ -68,14 +86,32 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST') {
 
 }
 
+function consultarVendedor($db){
+
+    $consulta = "SELECT * FROM vendedores";
+    $resultado = mysqli_query($db, $consulta);
+    
+    $vendedores = [];
+    while ($fila = mysqli_fetch_assoc($resultado)) {
+        $vendedores[] = $fila;
+    }
+    
+  
+    
+    // Guardar el array en la sesión
+    $_SESSION['vendedores'] = $vendedores;
+    
+   
+}
+consultarVendedor($db);
 
 
-function crear($db, $titulo , $precio, $imagen, $descripcion, $habitaciones,$wc, $estacionamiento,$vendedores_id){
+function crear($db, $titulo , $precio, $imagen, $descripcion, $habitaciones,$wc, $estacionamiento,$creado,$vendedores_id){
 
    
 
-    $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, vendedores_id) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento,creado, vendedores_id) 
+    VALUES (?, ?, ?, ?, ?, ?, ?,?, ?)";
 
 
 $stmt = mysqli_prepare($db, $query);
@@ -85,7 +121,7 @@ $stmt = mysqli_prepare($db, $query);
     echo "Error en la preparación de la consulta: " . mysqli_error($db);
     return;
 }
-mysqli_stmt_bind_param($stmt, "sdssiiii", $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento, $vendedores_id);
+mysqli_stmt_bind_param($stmt, "sdssiiiss", $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento,$creado, $vendedores_id);
 
 $resultado = mysqli_stmt_execute($stmt);
 
@@ -97,7 +133,7 @@ $resultado = mysqli_stmt_execute($stmt);
     echo "Error al crear la propiedad: " . mysqli_error($db);
 }
 
-// Cerramos la consulta preparada
+// Cierro la consulta preparada
 mysqli_stmt_close($stmt);
 
 }
@@ -113,4 +149,5 @@ function borrar(){
 }
 
 
+    
 ?>
