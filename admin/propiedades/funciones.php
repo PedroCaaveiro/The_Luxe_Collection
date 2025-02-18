@@ -29,14 +29,14 @@ $errores = [];
 
 if ($_SERVER['REQUEST_METHOD']=== 'POST') {
     
-    $titulo = $_POST['titulo'];
-    $precio = $_POST['precio'];
-    $imagen = $_FILES['imagen'];
-    $descripcion = $_POST['descripcion'];
-    $habitaciones = $_POST['habitaciones'];
-    $wc = $_POST['wc'];
-    $estacionamiento = $_POST['estacionamiento'];
-    $vendedores_id = $_POST['vendedor'];
+    $titulo = mysqli_real_escape_string($db,$_POST['titulo']);
+    $precio =  mysqli_real_escape_string($db,$_POST['precio']);
+    $descripcion =  mysqli_real_escape_string($db,$_POST['descripcion']);
+    $habitaciones =  mysqli_real_escape_string($db,$_POST['habitaciones']);
+    $wc =  mysqli_real_escape_string($db,$_POST['wc']);
+    $estacionamiento =  mysqli_real_escape_string($db,$_POST['estacionamiento']);
+    $vendedores_id = isset($_POST['vendedor']) ? mysqli_real_escape_string($db, $_POST['vendedor']) : null;
+
     $creado = date('Y/m/d');
 
     if (empty($titulo)) {
@@ -66,7 +66,26 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST') {
     if (empty($vendedores_id)) {
         $errores[] = "Añadir el vendedor";
     }
-    
+  
+// Verificar si hay errores en la subida de la imagen
+if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+    $imagen = $_FILES['imagen']['name'];
+    $imagen_temp = $_FILES['imagen']['tmp_name'];
+    $imagen_size = $_FILES['imagen']['size'];
+
+    // Validación de tamaño de la imagen
+    $medida = 1000 * 1000; // 1 mb
+    if ($imagen_size > $medida) {
+        $errores[] = "La imagen es demasiado grande";
+    }
+
+    // Limpieza del nombre del archivo
+    $imagen = mysqli_real_escape_string($db, $imagen);
+} else {
+    $errores[] = "Añadir una imagen válida";
+    $imagen = null;
+}
+   
 
     if (!empty($errores)) {
         $_SESSION['errores'] = $errores; // Guardar los errores en la sesión
@@ -75,6 +94,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST') {
         
     }else{
         crear($db,$titulo , $precio, $imagen, $descripcion, $habitaciones,$wc, $estacionamiento,$creado,$vendedores_id);
+
       
        
     }

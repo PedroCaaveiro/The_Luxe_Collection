@@ -69,6 +69,7 @@ if (isset($_GET['mensaje']) && $_GET['mensaje'] == 'exito') {
         <legend>Vendedor</legend>
 <select name="vendedor">  
     <option value="" disabled selected>Seleccionar Vendedor</option>  
+    
     <?php 
     if (!empty($_SESSION['vendedores'])) {
         foreach ($_SESSION['vendedores'] as $vendedor) {
