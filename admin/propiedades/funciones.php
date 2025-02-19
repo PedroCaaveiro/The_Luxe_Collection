@@ -3,8 +3,9 @@ session_start();
 
 
 
-require_once '../../includes/config/database.php';
 
+
+require_once __DIR__ . '/../../includes/config/database.php';
 
 
 
@@ -27,7 +28,7 @@ $errores = [];
 
 
 
-if ($_SERVER['REQUEST_METHOD']=== 'POST') {
+if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $titulo = mysqli_real_escape_string($db,$_POST['titulo']);
     $precio =  mysqli_real_escape_string($db,$_POST['precio']);
@@ -72,6 +73,7 @@ if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
     $imagen = $_FILES['imagen']['name'];
     $imagen_temp = $_FILES['imagen']['tmp_name'];
     $imagen_size = $_FILES['imagen']['size'];
+    $imagen = crearCarpeta($_FILES['imagen']);
 
     // Validación de tamaño de la imagen
     $medida = 1000 * 1000; // 1 mb
@@ -93,6 +95,10 @@ if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
         exit;
         
     }else{
+       
+        crearCarpeta($_FILES['imagen']);
+        
+
         crear($db,$titulo , $precio, $imagen, $descripcion, $habitaciones,$wc, $estacionamiento,$creado,$vendedores_id);
 
       
@@ -104,6 +110,19 @@ if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
 
 
 
+}
+
+function crearCarpeta($imagen){
+$carpetaImagenes = '../../imagenes/';
+if (!is_dir($carpetaImagenes)) {
+    mkdir($carpetaImagenes);
+}
+
+$nombreImagen = md5(uniqid(rand(),true));
+
+move_uploaded_file($imagen['tmp_name'],$carpetaImagenes. $nombreImagen. "jpg");
+
+return $nombreImagen;
 }
 
 function consultarVendedor($db){

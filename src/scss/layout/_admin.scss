@@ -1,0 +1,32 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v;
+
+table.propiedades{
+
+    margin-top: 4rem;
+    width:100%;
+    border-spacing: 0;
+    
+
+    thead{
+        background-color:v.$verde;
+    }
+    th{
+        color:v.$blanco;
+        padding: 2rem;
+    }
+    .imagen-tabla{
+        display: block; /* Hace que la imagen sea un bloque */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+    max-width:20rem; /* Limita el ancho de la imagen */
+    height: auto;
+    }
+    tr{
+      text-align:center;
+    }
+    
+    a{
+        display: inline-block;
+        margin: 5px 10px; /* Espacio entre los botones */
+    }
+}

@@ -792,6 +792,42 @@ html, body {
   cursor: pointer;
 }
 
+.boton-rojo-block {
+  display: block;
+  background-color: #ff0000;
+  color: #FFFFFF;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 1rem 3rem;
+  margin-top: 5rem;
+  border-radius: 25px;
+  width: auto;
+  max-width: fit-content;
+  border: none;
+}
+.boton-rojo-block:hover {
+  background-color: #000000;
+  cursor: pointer;
+}
+
+.boton-verde-block {
+  display: block;
+  background-color: #71B100;
+  color: #FFFFFF;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 1rem 3rem;
+  margin-top: 5rem;
+  border-radius: 25px;
+  width: auto;
+  max-width: fit-content;
+  border: none;
+}
+.boton-verde-block:hover {
+  background-color: #000000;
+  cursor: pointer;
+}
+
 .imagen-contacto {
   background-image: url(/src/img/encuentra.jpg);
   background-position: center center;
@@ -1019,5 +1055,31 @@ html, body {
 .errores ul li {
   text-transform: uppercase;
   padding: 5px;
+}
+
+table.propiedades {
+  margin-top: 4rem;
+  width: 100%;
+  border-spacing: 0;
+}
+table.propiedades thead {
+  background-color: #71B100;
+}
+table.propiedades th {
+  color: #FFFFFF;
+  padding: 2rem;
+}
+table.propiedades .imagen-tabla {
+  display: block; /* Hace que la imagen sea un bloque */
+  margin: 0 auto; /* Centra la imagen horizontalmente */
+  max-width: 20rem; /* Limita el ancho de la imagen */
+  height: auto;
+}
+table.propiedades tr {
+  text-align: center;
+}
+table.propiedades a {
+  display: inline-block;
+  margin: 5px 10px; /* Espacio entre los botones */
 }
 /*# sourceMappingURL=app.css.map */
