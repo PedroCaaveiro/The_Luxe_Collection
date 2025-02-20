@@ -6,7 +6,9 @@
 require_once 'funciones.php'; 
 $errores = $_SESSION['errores'] ?? [];
 unset($_SESSION['errores']); 
-require "../../includes/templates/funciones.php";
+require_once '../../includes/templates/funciones.php';
+
+
 incluirTemplate("header");
 ?>
 

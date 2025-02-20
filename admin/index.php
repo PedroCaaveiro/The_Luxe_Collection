@@ -1,7 +1,13 @@
 <?php
+require_once "propiedades/funciones.php";
+require_once __DIR__ . '/../includes/templates/funciones.php';
 
-require "../includes/templates/funciones.php";
+
 incluirTemplate("header");
+
+
+$propiedades = $_SESSION['propiedades'] ?? [];
+
 ?>
 
 <main class=contenedor seccion>
@@ -23,20 +29,34 @@ incluirTemplate("header");
         </thead>
 
         <tbody>
-
+       
+            
+      
 <tr>
-    <td>1</td>
-    <td>Casa en la playa</td>
-    <td><img src="/imagenes/c3055419c3a242cb21576351071d1f27jpg" class="imagen-tabla" alt=""></td>
-    <td>12000000</td>
-    <td>
-        <a class="boton-rojo-block" href="#">Eliminar</a>
-        <a  class="boton-verde-block" href="#">Actualizar</a>
-    </td>
-</tr>
+<?php if (empty($propiedades)): ?>
+                <tr>
+                    <td colspan="5">No hay propiedades disponibles.</td>
+                </tr>
+            <?php else: ?>
+                <?php foreach ($propiedades as $propiedad): ?>
+                <tr>
+                    <td><?= $propiedad['id']; ?></td>
+                    <td><?= htmlspecialchars($propiedad['titulo']); ?></td>
+                    <td>
+                        <img src="/imagenes/<?= htmlspecialchars($propiedad['imagen']); ?>" class="imagen-tabla" alt="Imagen de <?= htmlspecialchars($propiedad['titulo']); ?>">
+
+                    </td>
+                    <td><?= number_format($propiedad['precio'], 2, ',', '.'); ?> €</td>
+                    <td>
+                        <a class="boton-rojo-block" href="eliminar.php?id=<?= $propiedad['id']; ?>">Eliminar</a>
+                        <a class="boton-verde-block" href="actualizar.php?id=<?= $propiedad['id']; ?>">Actualizar</a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
 
         </tbody>
-
+   
 
     </table>
 
