@@ -29,16 +29,16 @@ $propiedades = $_SESSION['propiedades'] ?? [];
         </thead>
 
         <tbody>
-       
+
+
+
             
-      
-<tr>
-<?php if (empty($propiedades)): ?>
-                <tr>
-                    <td colspan="5">No hay propiedades disponibles.</td>
-                </tr>
-            <?php else: ?>
-                <?php foreach ($propiedades as $propiedad): ?>
+                <?php if (empty($propiedades)): ?>
+            <tr>
+                <td colspan="5">No hay propiedades disponibles.</td>
+            </tr>
+        <?php else: ?>
+            <?php foreach ($propiedades as $propiedad): ?>
                 <tr>
                     <td><?= $propiedad['id']; ?></td>
                     <td><?= htmlspecialchars($propiedad['titulo']); ?></td>
@@ -48,19 +48,26 @@ $propiedades = $_SESSION['propiedades'] ?? [];
                     </td>
                     <td><?= number_format($propiedad['precio'], 2, ',', '.'); ?> €</td>
                     <td>
-                        <a class="boton-rojo-block" href="..admin/propiedades/eliminar.php?id=<?= $propiedad['id']; ?>">Eliminar</a>
-                        <a class="boton-verde-block" href="../admin/propiedades/actualizar.php?id=<?=$propiedad['id']; ?>">Actualizar</a>
+                        <div class="acciones-container">
+                            <form action="" method="POST">
+                                <input type="hidden" name="id" value="<?= $propiedad['id']; ?>"> <!-- Enviar el ID de la propiedad -->
+                                <input type="submit" name="eliminar" value="Eliminar" class="boton-rojo-block">
+                            </form>
+                            <a class="boton-verde-block" href="../admin/propiedades/actualizar.php?id=<?= $propiedad['id']; ?>">Actualizar</a>
+                        </div>
                     </td>
+
+
                 </tr>
-                <?php endforeach; ?>
-            <?php endif; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
 
         </tbody>
-   
+
 
     </table>
 
-   
+
 
 </main>
 

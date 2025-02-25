@@ -28,8 +28,13 @@
 
 .boton-rojo-block{
     @include m.boton(v.$rojo,block,v.$negro);
+    
 }
 
 .boton-verde-block{
     @include m.boton(v.$verde,block,v.$negro);
 }
+
+
+
+

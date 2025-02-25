@@ -1069,6 +1069,12 @@ table.propiedades th {
   color: #FFFFFF;
   padding: 2rem;
 }
+table.propiedades .acciones-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 table.propiedades .imagen-tabla {
   display: block; /* Hace que la imagen sea un bloque */
   margin: 0 auto; /* Centra la imagen horizontalmente */

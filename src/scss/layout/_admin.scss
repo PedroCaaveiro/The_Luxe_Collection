@@ -15,6 +15,12 @@ table.propiedades{
         color:v.$blanco;
         padding: 2rem;
     }
+    .acciones-container {
+        display: flex;
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+    }
     .imagen-tabla{
         display: block; /* Hace que la imagen sea un bloque */
     margin: 0 auto; /* Centra la imagen horizontalmente */
