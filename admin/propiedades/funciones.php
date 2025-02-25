@@ -38,6 +38,8 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
     $estacionamiento =  mysqli_real_escape_string($db, $_POST['estacionamiento']);
     $vendedores_id = isset($_POST['vendedor']) ? mysqli_real_escape_string($db, $_POST['vendedor']) : null;
 
+    $id = isset($_POST['id']) ? (int) $_POST['id'] : null;
+
     $creado = date('Y/m/d');
 
     if (empty($titulo)) {
@@ -98,7 +100,14 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
         crearCarpeta($_FILES['imagen']);
 
 
+       if ($id) {
+        actualizar($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento, $vendedores_id, $id);
+       }else{
+        
         crear($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento, $creado, $vendedores_id);
+       }
+        
+        
     }
 }
 
@@ -136,6 +145,7 @@ consultarVendedor($db);
 
 
 function crear($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento, $creado, $vendedores_id)
+
 {
 
 
@@ -187,7 +197,60 @@ function mostrarResultados($db) {
 }
 mostrarResultados($db);
 
-function actualizar() {}
+
+function consultaPropiedades($db){
+
+    if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+        return null; // Retorna null si no hay un ID válido
+    }
+
+    $id = (int) $_GET['id'];
+
+  $consulta = "SELECT * FROM propiedades where id = $id";
+$resultado = mysqli_query($db,$consulta);
+$resultadoPropiedad = mysqli_fetch_assoc($resultado);
+
+$_SESSION['resultadoPropiedad'] = $resultadoPropiedad;
+
+
+
+}
+
+consultaPropiedades($db);
+
+
+function actualizar($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento, $vendedores_id, $id)
+{
+    $titulo = mysqli_real_escape_string($db, $titulo);
+    $precio = (float) $precio;
+    $descripcion = mysqli_real_escape_string($db, $descripcion);
+    $habitaciones = (int) $habitaciones;
+    $wc = (int) $wc;
+    $estacionamiento = (int) $estacionamiento;
+    $vendedores_id = (int) $vendedores_id;
+
+    $query = "UPDATE propiedades 
+        SET titulo = '$titulo',
+            precio = $precio,
+            descripcion = '$descripcion',
+            habitaciones = $habitaciones,
+            wc = $wc,
+            estacionamiento = $estacionamiento,
+            vendedores_id = $vendedores_id  
+        WHERE id = $id";
+
+    // Ejecutar la consulta
+    $resultado = mysqli_query($db, $query);
+
+    if ($resultado) {
+        header("Location: actualizar.php?id=" . $id);
+        exit();
+    } else {
+        echo "Error al actualizar la propiedad: " . mysqli_error($db);
+    }
+}
+
+
 
 
 function borrar() {}

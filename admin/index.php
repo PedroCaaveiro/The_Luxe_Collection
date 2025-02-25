@@ -48,8 +48,8 @@ $propiedades = $_SESSION['propiedades'] ?? [];
                     </td>
                     <td><?= number_format($propiedad['precio'], 2, ',', '.'); ?> €</td>
                     <td>
-                        <a class="boton-rojo-block" href="eliminar.php?id=<?= $propiedad['id']; ?>">Eliminar</a>
-                        <a class="boton-verde-block" href="actualizar.php?id=<?= $propiedad['id']; ?>">Actualizar</a>
+                        <a class="boton-rojo-block" href="..admin/propiedades/eliminar.php?id=<?= $propiedad['id']; ?>">Eliminar</a>
+                        <a class="boton-verde-block" href="../admin/propiedades/actualizar.php?id=<?=$propiedad['id']; ?>">Actualizar</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
