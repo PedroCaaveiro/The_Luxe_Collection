@@ -23,6 +23,11 @@ $errores = [];
 
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    if (isset($_POST['eliminar'])) {
+        borrar($db);
+        exit();
+    }
+
     $titulo = mysqli_real_escape_string($db, $_POST['titulo']);
     $precio =  mysqli_real_escape_string($db, $_POST['precio']);
     $descripcion =  mysqli_real_escape_string($db, $_POST['descripcion']);
@@ -35,27 +40,35 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 
     $creado = date('Y/m/d');
 
-
     $resultado = validarPropiedadYImagen($titulo, $precio, $descripcion, $habitaciones, $wc, $estacionamiento, $vendedores_id, $db);
 
-
-       if (!empty($resultado['errores'])) {
-        $_SESSION['errores'] = $resultado['errores']; // Guardar los errores en la sesión
-        header("Location: crear.php"); // Redirigir al formulario de creación
-        exit;
-    } else {
-        // No hay errores, podemos proceder con la imagen
-        $imagen = $resultado['imagen']; // Obtener el nombre de la imagen validada
+if (!empty($resultado['errores'])) {
+    $_SESSION['errores'] = $resultado['errores']; // Guardar los errores en la sesión
+    header("Location: crear.php"); // Redirigir al formulario de creación
+    exit;
+} else {
+    // No hay errores, obtenemos la imagen validada
+    $imagen = $resultado['imagen']; // Obtener el nombre de la imagen validada
     
-        // Dependiendo de si el id existe, se hace la actualización o la creación
-        if ($id) {
-            actualizar($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento, $vendedores_id, $id);
-        } else {
-            crear($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento, $creado, $vendedores_id);
-        }
+    // Si estamos creando una nueva propiedad, procesamos la imagen antes de guardar en la base de datos
+    if (!$id) {
+        // Si es creación, primero movemos la imagen
+        $carpetaImagenes = '../../imagenes/';
+        move_uploaded_file($_FILES['imagen']['tmp_name'], $carpetaImagenes . $imagen);
+    }
+    
+    // Dependiendo de si el id existe, se hace la actualización o la creación
+    if ($id) {
+        // Si se está actualizando, llamamos a la función de actualización
+        actualizar($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento, $vendedores_id, $id);
+    } else {
+        // Si se está creando, llamamos a la función de creación
+        crear($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento, $creado, $vendedores_id);
     }
 }
 
+    
+}
 
 
 function validarPropiedadYImagen($titulo, $precio, $descripcion, $habitaciones, $wc, $estacionamiento, $vendedores_id, $db) {
@@ -90,32 +103,27 @@ function validarPropiedadYImagen($titulo, $precio, $descripcion, $habitaciones, 
         $errores[] = "Añadir el vendedor";
     }
 
-    // Validación de la imagen
-    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-        $imagen = $_FILES['imagen']['name'];
-        $imagen_temp = $_FILES['imagen']['tmp_name'];
-        $imagen_size = $_FILES['imagen']['size'];
-        
-        // Llamamos a la función para guardar la imagen
-        $imagen = crearCarpeta($_FILES['imagen']);
+    // Validación de la imagen (sin subirla aún)
+    $imagen = null;
 
-        // Validación de tamaño de la imagen
+    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+        $imagen_size = $_FILES['imagen']['size'];
         $medida = 1000 * 1000; // 1 MB
+
         if ($imagen_size > $medida) {
             $errores[] = "La imagen es demasiado grande";
         }
 
-        // Limpieza del nombre de la imagen (prevención de inyecciones SQL)
-        $imagen = mysqli_real_escape_string($db, $imagen);
+        // Si no hay errores, solo generamos el nombre de la imagen (pero aún no la guardamos)
+        if (empty($errores)) {
+            $imagen = md5(uniqid(rand(), true)) . ".jpg";
+        }
     } else {
         $errores[] = "Añadir una imagen válida";
-        $imagen = null;
     }
 
-    // Devolver los errores encontrados
     return ['errores' => $errores, 'imagen' => $imagen];
 }
-
 
 
 function crear($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento, $creado, $vendedores_id){
@@ -149,19 +157,37 @@ function crear($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc,
     mysqli_stmt_close($stmt);
 }
 
-function crearCarpeta($imagen)
-{
+function crearCarpeta($imagen, $db) {
     $carpetaImagenes = '../../imagenes/';
-    if (!is_dir($carpetaImagenes)) {
-        mkdir($carpetaImagenes);
+
+    // Asegurarse de que la consulta de propiedades se ejecutó antes
+    if (!isset($_SESSION['resultadoPropiedad']) || empty($_SESSION['resultadoPropiedad'])) {
+        return null; // No se encontró la propiedad
     }
 
-    $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+    $propiedad = $_SESSION['resultadoPropiedad'];
+    $id = $propiedad['id']; // Obtener el ID desde la sesión
 
+    if (!empty($propiedad['imagen'])) {
+        $imagenAnterior = $carpetaImagenes . $propiedad['imagen'];
+
+        // Si la imagen existe, eliminarla
+        if (file_exists($imagenAnterior)) {
+            unlink($imagenAnterior);
+        }
+    }
+
+    // Subir la nueva imagen
+    $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
     move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
+
+    // Actualizar la base de datos con la nueva imagen
+    $sqlUpdate = "UPDATE propiedades SET imagen = '$nombreImagen' WHERE id = $id";
+    mysqli_query($db, $sqlUpdate);
 
     return $nombreImagen;
 }
+
 
 
 function consultarVendedor($db){
@@ -221,8 +247,8 @@ $_SESSION['resultadoPropiedad'] = $resultadoPropiedad;
 
 consultaPropiedades($db);
 
-
-function actualizar($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento, $vendedores_id, $id){
+function actualizar($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento, $vendedores_id, $id) {
+    // Sanitización de datos
     $titulo = mysqli_real_escape_string($db, $titulo);
     $precio = (float) $precio;
     $descripcion = mysqli_real_escape_string($db, $descripcion);
@@ -231,6 +257,12 @@ function actualizar($db, $titulo, $precio, $imagen, $descripcion, $habitaciones,
     $estacionamiento = (int) $estacionamiento;
     $vendedores_id = (int) $vendedores_id;
 
+    // Si se subió una nueva imagen, manejar la actualización
+    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+        $imagen = crearCarpeta($_FILES['imagen'], $db); // Pasar el arreglo $_FILES['imagen']
+    }
+
+    // Consulta SQL de actualización
     $query = "UPDATE propiedades 
         SET titulo = '$titulo',
             precio = $precio,
@@ -238,8 +270,14 @@ function actualizar($db, $titulo, $precio, $imagen, $descripcion, $habitaciones,
             habitaciones = $habitaciones,
             wc = $wc,
             estacionamiento = $estacionamiento,
-            vendedores_id = $vendedores_id  
-        WHERE id = $id";
+            vendedores_id = $vendedores_id";
+
+    // Si hay una imagen nueva, actualizar el campo imagen
+    if ($imagen) {
+        $query .= ", imagen = '$imagen'";
+    }
+
+    $query .= " WHERE id = $id";
 
     // Ejecutar la consulta
     $resultado = mysqli_query($db, $query);
@@ -255,4 +293,26 @@ function actualizar($db, $titulo, $precio, $imagen, $descripcion, $habitaciones,
 
 
 
-function borrar() {}
+
+function borrar($db){
+    if (isset($_POST['eliminar'])) {
+        $id = $_POST['id'];
+
+        $id = (int) $id;
+
+        $query = "DELETE FROM propiedades WHERE id = $id";
+
+        $resultado = mysqli_query($db, $query);
+
+        if ($resultado) {
+            header("Location: ../index.php");
+
+            exit();
+        } else {
+            echo "error al eliminar la propiedad" . mysqli_error($db);
+        }
+
+}
+
+
+}

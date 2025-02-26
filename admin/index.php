@@ -49,7 +49,7 @@ $propiedades = $_SESSION['propiedades'] ?? [];
                     <td><?= number_format($propiedad['precio'], 2, ',', '.'); ?> €</td>
                     <td>
                         <div class="acciones-container">
-                            <form action="" method="POST">
+                            <form action="../admin/propiedades/funciones.php" method="POST">
                                 <input type="hidden" name="id" value="<?= $propiedad['id']; ?>"> <!-- Enviar el ID de la propiedad -->
                                 <input type="submit" name="eliminar" value="Eliminar" class="boton-rojo-block">
                             </form>
