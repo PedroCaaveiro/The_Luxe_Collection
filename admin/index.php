@@ -74,3 +74,5 @@ $propiedades = $_SESSION['propiedades'] ?? [];
 <?php
 incluirTemplate("footer");
 ?>
+
+<script src="../../src/js/app.js"></script>

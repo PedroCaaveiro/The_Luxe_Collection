@@ -290,21 +290,22 @@ function actualizar($db, $titulo, $precio, $imagen, $descripcion, $habitaciones,
     }
 }
 
-
-
-
-
 function borrar($db){
     if (isset($_POST['eliminar'])) {
         $id = $_POST['id'];
-
+    }
         $id = (int) $id;
+
+        // Primero, obtenemos la ruta de la imagen antes de borrar el registro
+        $rutaImagen = obtenerRutaImagen($id, $db);
+
 
         $query = "DELETE FROM propiedades WHERE id = $id";
 
         $resultado = mysqli_query($db, $query);
 
         if ($resultado) {
+            borrarCarpeta($rutaImagen);
             header("Location: ../index.php");
 
             exit();
@@ -312,7 +313,24 @@ function borrar($db){
             echo "error al eliminar la propiedad" . mysqli_error($db);
         }
 
+
+}
+
+// Función para obtener la ruta de la imagen antes de eliminar el registro
+function obtenerRutaImagen($id, $db) {
+    $query = "SELECT imagen FROM propiedades WHERE id = $id";
+    $resultado = mysqli_query($db, $query);
+    if ($resultado) {
+        $fila = mysqli_fetch_assoc($resultado);
+        return '../../imagenes/' . $fila['imagen']; // Ajusta la ruta según tu estructura
+    }
+    return null;
 }
 
 
+// Función para eliminar la imagen del servidor
+function borrarCarpeta($rutaImagen) {
+    if (!empty($rutaImagen) && file_exists($rutaImagen)) {
+        unlink($rutaImagen);
+    }
 }
