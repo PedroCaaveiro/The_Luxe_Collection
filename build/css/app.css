@@ -653,6 +653,12 @@ html, body {
     display: grid;
     gap: 3rem;
     grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
   }
   .contenido-anuncio {
     display: flex;
@@ -694,16 +700,21 @@ html, body {
   }
 }
 .anuncio {
+  width: 500px;
+  height: 760px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-aorund;
   background-color: #e1e1e1;
   border: 1px solid #333333;
 }
 .anuncio .contenido-anuncio {
-  padding: 2rem;
+  padding: 1rem;
 }
 .anuncio h3, .anuncio p {
+  word-wrap: break-word;
+  white-space: normal;
+  width: 100%;
   margin: 0;
 }
 .anuncio .precio {
