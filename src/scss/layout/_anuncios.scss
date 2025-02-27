@@ -5,33 +5,49 @@
 
 
 @include m.tablet {
-    .contenedor-anuncios {
-        @include m.grid(3,2rem)
+    .seccion-contenedor{
+        display: flex;
         
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    .contenedor-anuncios {
+        @include m.grid(1,2rem);
+
+       
+        
+    
     }
     .contenido-anuncio{
         display: flex;
         flex-direction: column;
-        align-items: center
+        align-items: center;
+        
        
     }
-    
+
+   
 
 }
 @include m.desktop {
+
+  .seccion-contenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+  }
     .contenedor-anuncios {
         @include m.grid(3,3rem);
-        display: flex;                  // Permite que los elementos se ajusten si no caben
-        justify-content: center;    // Centra los elementos horizontalmente
-        gap: 2rem;                  // Espacio entre los elementos
-        width: 100%;                // Asegura que ocupe todo el ancho
-        margin: 0 auto;             // Centra el contenedor si tiene un ancho limitado
-        box-sizing: border-box;
+      
     }
 .contenido-anuncio{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Asegura que el contenido se alinee verticalmente */
+    text-align: center; 
     
     
   
@@ -54,35 +70,39 @@
 }
 
 @include m.telefono{
+    
     .contenedor-anuncios {
-        @include m.grid(1, 2rem);
-        
-        
+        @include m.grid(1, 0.5rem);
+        margin-left: 5px;
+        .anuncio{
+            width:380px;
+            height:730px;
+            
+        }
     }
     .contenido-anuncio{
         display: flex;
         flex-direction: column;
-        align-items: center
+        align-items: center;
+       
         
     }
     .iconos-caracteristicas li {
         display: flex;
         align-items: center;
-        gap: 10px; // Espacio entre imagen y texto
+        gap: 5px; 
     }
     .iconos-caracteristicas p {
         padding: 10px;
     }
 
-   
 
 }
 .anuncio{
-    width:500px;
-    height:760px;
+    width:430px;
+    height:740px;
     display: flex;
     flex-direction: column;
-    justify-content: space-aorund;
     background-color:v.$gris;
     border: 1px solid v.$grisOscuro;
     
@@ -92,8 +112,8 @@
     }
     
     h3, p{
-        word-wrap: break-word;  // Permite que las palabras largas se rompan y no desborden
-        white-space: normal;    // Evita que el texto se quede en una sola línea
+        word-wrap: break-word;  
+        white-space: normal;    
         width: 100%; 
 margin: 0;
     }

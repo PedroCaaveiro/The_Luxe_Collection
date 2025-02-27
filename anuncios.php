@@ -15,7 +15,7 @@ require_once 'includes/templates/funciones.php';
 incluirTemplate('header');
 
 ?>
-    <main class="contenedor seccion">
+    <main class="seccion-contenedor">
         <h2>Casas y Departamentos en Venta</h2>
 
 

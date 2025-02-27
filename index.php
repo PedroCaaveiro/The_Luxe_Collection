@@ -45,7 +45,7 @@ incluirTemplate('header',$inicio = true);
         </div>
     </main>
 
-    <section class="seccion contenedor">
+    <section class="seccion-contenedor">
 
         <h2>Casas y Departamentos en Venta</h2>
 
