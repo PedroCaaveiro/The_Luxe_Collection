@@ -2,13 +2,15 @@
 require_once "propiedades/funciones.php";
 require_once __DIR__ . '/../includes/templates/funciones.php';
 
-$auth = $_SESSION['login'];
 
-if (!$auth) {
-    header('Location: /');
-    exit;
+if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
+
     
+    header('Location: login.php');
+    exit;
+
 }
+
 
 
 incluirTemplate("header");

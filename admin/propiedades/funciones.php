@@ -22,52 +22,105 @@ $errores = [];
 
 
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-
+    // Primero verificamos si es una acción de eliminación
     if (isset($_POST['eliminar'])) {
         borrar($db);
         exit();
     }
 
-    $titulo = mysqli_real_escape_string($db, $_POST['titulo']);
-    $precio =  mysqli_real_escape_string($db, $_POST['precio']);
-    $descripcion =  mysqli_real_escape_string($db, $_POST['descripcion']);
-    $habitaciones =  mysqli_real_escape_string($db, $_POST['habitaciones']);
-    $wc =  mysqli_real_escape_string($db, $_POST['wc']);
-    $estacionamiento =  mysqli_real_escape_string($db, $_POST['estacionamiento']);
-    $vendedores_id = isset($_POST['vendedor']) ? mysqli_real_escape_string($db, $_POST['vendedor']) : null;
-
-    $id = isset($_POST['id']) ? (int) $_POST['id'] : null;
-
-    $creado = date('Y/m/d');
-
-    $resultado = validarPropiedadYImagen($titulo, $precio, $descripcion, $habitaciones, $wc, $estacionamiento, $vendedores_id, $db);
-
-if (!empty($resultado['errores'])) {
-    $_SESSION['errores'] = $resultado['errores']; // Guardar los errores en la sesión
-    header("Location: crear.php"); // Redirigir al formulario de creación
-    exit;
-} else {
-    // No hay errores, obtenemos la imagen validada
-    $imagen = $resultado['imagen']; // Obtener el nombre de la imagen validada
-    
-    // Si estamos creando una nueva propiedad, procesamos la imagen antes de guardar en la base de datos
-    if (!$id) {
-        // Si es creación, primero movemos la imagen
-        $carpetaImagenes = '../../imagenes/';
-        move_uploaded_file($_FILES['imagen']['tmp_name'], $carpetaImagenes . $imagen);
+    // Validación de login: si el email y la contraseña no son correctos, se guardan los errores y se redirige
+    if (isset($_POST['email']) && isset($_POST['password'])) {
+        $erroresLogin = validarUsuario($db, $_POST['email'], $_POST['password']);
+        if (!empty($erroresLogin)) {
+            $_SESSION['erroresLogin'] = $erroresLogin; // Guardamos los errores de login en la sesión
+            header("Location: ../../login.php"); // Redirigimos a la página de login (por ejemplo)
+            exit;
+        }
     }
-    
-    // Dependiendo de si el id existe, se hace la actualización o la creación
-    if ($id) {
-        // Si se está actualizando, llamamos a la función de actualización
-        actualizar($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento, $vendedores_id, $id);
-    } else {
-        // Si se está creando, llamamos a la función de creación
-        crear($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento, $creado, $vendedores_id);
+
+    // Validación de la propiedad: validamos solo si no hay errores de login
+    if (empty($erroresLogin)) {
+        $erroresPropiedad = [];
+        $titulo = mysqli_real_escape_string($db, $_POST['titulo']);
+        $precio =  mysqli_real_escape_string($db, $_POST['precio']);
+        $descripcion =  mysqli_real_escape_string($db, $_POST['descripcion']);
+        $habitaciones =  mysqli_real_escape_string($db, $_POST['habitaciones']);
+        $wc =  mysqli_real_escape_string($db, $_POST['wc']);
+        $estacionamiento =  mysqli_real_escape_string($db, $_POST['estacionamiento']);
+        $vendedores_id = isset($_POST['vendedor']) ? mysqli_real_escape_string($db, $_POST['vendedor']) : null;
+
+        $id = isset($_POST['id']) ? (int) $_POST['id'] : null;
+        $creado = date('Y/m/d');
+
+        // Usamos la función de validación de la propiedad
+        $resultado = validarPropiedadYImagen($titulo, $precio, $descripcion, $habitaciones, $wc, $estacionamiento, $vendedores_id, $db);
+        $erroresPropiedad = $resultado['errores'];
+
+        if (!empty($erroresPropiedad)) {
+            $_SESSION['erroresPropiedad'] = $erroresPropiedad; // Guardamos los errores de la propiedad
+            header("Location: crear.php"); // Redirigimos a la página de crear
+            exit;
+        } else {
+            $imagen = $resultado['imagen']; 
+
+            if (!$id) {
+                $carpetaImagenes = '../../imagenes/';
+                move_uploaded_file($_FILES['imagen']['tmp_name'], $carpetaImagenes . $imagen);
+            }
+
+            if ($id) {
+                actualizar($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento, $vendedores_id, $id);
+            } else {
+                crear($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento, $creado, $vendedores_id);
+            }
+        }
     }
 }
 
+
+function validarUsuario($db,$email,$password){
+
+    $errores = [];
+
+    $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+    if (!$email) {
+        $errores[] = 'El email es obligatorio o no es válido';
+    }
+
+    if (!$password) {
+        $errores[] = 'El password es obligatorio';
+    }
+
+    if (empty($errores)) {
+        $query = "SELECT * FROM usuarios WHERE email = ?";
+        $stmt = mysqli_prepare($db, $query);
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        $resultado = mysqli_stmt_get_result($stmt);
+
+        if ($resultado && $resultado->num_rows > 0) {
+            $usuario = mysqli_fetch_assoc($resultado);
+            if (password_verify($password, $usuario['password'])) {
+                session_start();
+                $_SESSION['usuario'] = $usuario['email'];
+                $_SESSION['login'] = true;
+                header("Location: ../index.php"); // Redirigir al usuario
+                exit;
+            } else {
+                $errores[] = 'El password es incorrecto';
+            }
+        } else {
+            $errores[] = "El usuario no existe";
+        }
+    }
+
+     // Guardar los errores en la sesión si los hay
+     if (!empty($errores)) {
+        session_start();  // Inicia la sesión si aún no se ha hecho
+        $_SESSION['erroresLogin'] = $errores;
+    }
     
+    return $errores; // Devuelve los errores para mostrarlos en el formulario
 }
 
 
