@@ -30,6 +30,7 @@ $auth = verificarUsuario();
                     <a href="../../contacto.php">Contacto</a>
 
                     <?php if ($auth): ?>
+                        <a href="../../admin/index.php">Admin</a>
                         <a href="/cerrarSesion.php">Cerrar sesión</a>
                     <?php else: ?>
                         <a href="login.php">Login</a>
