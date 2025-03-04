@@ -23,11 +23,11 @@ $auth = verificarUsuario();
             <div class="derecha">
 
                 <nav class="navegacion">
-                    <a href="index.php">Inicio</a>
-                    <a href="nosotros.php">Nosotros</a>
-                    <a href="anuncios.php">Anuncios</a>
-                    <a href="blog.php">Blog</a>
-                    <a href="contacto.php">Contacto</a>
+                    <a href="../../index.php">Inicio</a>
+                    <a href="../../nosotros.php">Nosotros</a>
+                    <a href="../../anuncios.php">Anuncios</a>
+                    <a href="../../blog.php">Blog</a>
+                    <a href="../../contacto.php">Contacto</a>
 
                     <?php if ($auth): ?>
                         <a href="/cerrarSesion.php">Cerrar sesión</a>
