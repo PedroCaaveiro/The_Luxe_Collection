@@ -1,12 +1,20 @@
-
-
-
 <?php
 
-require_once 'funciones.php'; 
-$errores = $_SESSION['errores'] ?? [];
-unset($_SESSION['errores']); 
+require_once 'funciones.php';
+
 require_once '../../includes/templates/funciones.php';
+if (!verificarUsuario()) {
+    // Si el usuario no está logueado, redirige a login.php
+    header('Location: /login.php');
+    exit;
+}
+
+$errores = $_SESSION['errores'] ?? [];
+
+unset($_SESSION['errores']);
+
+
+
 
 
 incluirTemplate("header");
@@ -16,21 +24,21 @@ incluirTemplate("header");
     <h1>Crear</h1>
     <?php
 
-if (isset($_GET['mensaje']) && $_GET['mensaje'] == 'exito') {
-    echo '<h2 id="mensaje-creacion">Propiedad creada correctamente</h2>';
-}
-?>
+    if (isset($_GET['mensaje']) && $_GET['mensaje'] == 'exito') {
+        echo '<h2 id="mensaje-creacion">Propiedad creada correctamente</h2>';
+    }
+    ?>
 
-<?php if (!empty($errores)): ?>
-    <div class= "errores" id="mensaje-creacion">
-        <h3>Errores encontrados:</h3>
-        <ul>
-            <?php foreach ($errores as $error): ?>
-                <li><?php echo htmlspecialchars($error); ?></li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-<?php endif; ?>
+    <?php if (!empty($errores)): ?>
+        <div class="errores" id="mensaje-creacion">
+            <h3>Errores encontrados:</h3>
+            <ul>
+                <?php foreach ($errores as $error): ?>
+                    <li><?php echo htmlspecialchars($error); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
 
 
 
@@ -42,7 +50,7 @@ if (isset($_GET['mensaje']) && $_GET['mensaje'] == 'exito') {
         <fieldset>
             <legend>Información General</legend>
             <label for="titulo">Titulo:</label>
-            <input type="text" id="titulo" name="titulo" placeholder="Titulo Propiedad" >
+            <input type="text" id="titulo" name="titulo" placeholder="Titulo Propiedad">
 
             <label for="precio">Precio:</label>
             <input type="number" id="precio" name="precio" placeholder="Precio Propiedad">
@@ -68,21 +76,21 @@ if (isset($_GET['mensaje']) && $_GET['mensaje'] == 'exito') {
         </fieldset>
 
         <fieldset>
-        <legend>Vendedor</legend>
-<select name="vendedor">  
-    <option value="" disabled selected>Seleccionar Vendedor</option>  
-    
-    <?php 
-    if (!empty($_SESSION['vendedores'])) {
-        foreach ($_SESSION['vendedores'] as $vendedor) {
-            echo "<option value='" . htmlspecialchars($vendedor['id']) . "'>" . htmlspecialchars($vendedor['nombre']) . " ".  htmlspecialchars($vendedor['apellido']) . "</option>";
-        }
-    } else {
-        echo "<option value='' disabled>No hay vendedores disponibles</option>";
-    }
-    ?>
+            <legend>Vendedor</legend>
+            <select name="vendedor">
+                <option value="" disabled selected>Seleccionar Vendedor</option>
 
-</select>
+                <?php
+                if (!empty($_SESSION['vendedores'])) {
+                    foreach ($_SESSION['vendedores'] as $vendedor) {
+                        echo "<option value='" . htmlspecialchars($vendedor['id']) . "'>" . htmlspecialchars($vendedor['nombre']) . " " .  htmlspecialchars($vendedor['apellido']) . "</option>";
+                    }
+                } else {
+                    echo "<option value='' disabled>No hay vendedores disponibles</option>";
+                }
+                ?>
+
+            </select>
 
 
         </fieldset>

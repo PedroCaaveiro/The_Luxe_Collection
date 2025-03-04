@@ -1,5 +1,9 @@
 <?php
-session_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 
 
 require_once __DIR__ . '/../../includes/config/database.php';
@@ -122,6 +126,21 @@ function validarUsuario($db,$email,$password){
     
     return $errores; // Devuelve los errores para mostrarlos en el formulario
 }
+function verificarUsuario() {
+    // Verificar si la sesión ya está iniciada antes de llamarla
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    // Verificar si el usuario está logueado
+    if (isset($_SESSION['login']) && $_SESSION['login'] === true) {
+        return true;  // Usuario está logueado
+    }
+    
+    return false;  // Usuario no está logueado
+}
+
+
 
 
 function validarPropiedadYImagen($titulo, $precio, $descripcion, $habitaciones, $wc, $estacionamiento, $vendedores_id, $db) {

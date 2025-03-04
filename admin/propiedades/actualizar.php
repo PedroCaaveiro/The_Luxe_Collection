@@ -1,4 +1,5 @@
 <?php
+require_once 'funciones.php'; 
 
 
 $id = $_GET['id'];
@@ -8,11 +9,16 @@ if (!$id) {
     header('Location: /admin');
 }
 
-require_once 'funciones.php'; 
+
 $errores = $_SESSION['errores'] ?? [];
 unset($_SESSION['errores']); 
 require_once '../../includes/templates/funciones.php';
 
+if (!verificarUsuario()) {
+    // Si el usuario no está logueado, redirige a login.php
+    header('Location: /login.php');
+    exit;
+}
 
 incluirTemplate("header");
 ?>
