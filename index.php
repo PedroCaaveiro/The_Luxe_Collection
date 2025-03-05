@@ -24,23 +24,17 @@ incluirTemplate('header',$inicio = true);
             <div class="icono">
                 <img src="/src/img/icono1.svg" alt="Icono seguridad" loading="lazy">
                 <h3>Seguridad</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque praesentium harum doloremque
-                    sapiente, voluptatibus quas tempora veritatis? Voluptas ratione dignissimos totam eaque vel
-                    quibusdam quas nesciunt exercitationem, iusto placeat eveniet?</p>
+                <p>En nuestra inmobiliaria, la confianza y la transparencia son fundamentales. Garantizamos a nuestros clientes un proceso de compra seguro, ágil y sin sorpresas.</p>
             </div>
             <div class="icono">
                 <img src="/src/img/icono2.svg" alt="Icono Precio" loading="lazy">
                 <h3>Precio</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque praesentium harum doloremque
-                    sapiente, voluptatibus quas tempora veritatis? Voluptas ratione dignissimos totam eaque vel
-                    quibusdam quas nesciunt exercitationem, iusto placeat eveniet?</p>
+                <p>Ofrecemos propiedades exclusivas con una excelente relación calidad-precio, ajustadas al mercado y sin costos ocultos. Te garantizamos transparencia total y asesoramiento para una inversión segura.</p>
             </div>
             <div class="icono">
                 <img src="/src/img/icono3.svg" alt="Icono Tiempo" loading="lazy">
                 <h3>Tiempo</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque praesentium harum doloremque
-                    sapiente, voluptatibus quas tempora veritatis? Voluptas ratione dignissimos totam eaque vel
-                    quibusdam quas nesciunt exercitationem, iusto placeat eveniet?</p>
+                <p>Agilizamos todo el proceso para que puedas disfrutar de tu nuevo hogar en el menor tiempo posible. Nos encargamos de cada detalle para una compra rápida y sin complicaciones.</p>
             </div>
         </div>
     </main>

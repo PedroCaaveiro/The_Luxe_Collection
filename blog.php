@@ -24,7 +24,7 @@ incluirTemplate('header');
                 <img src="src/img/blog1.jpg" alt="texto entrada blog" loading="lazy">
             </div>
             <div class="texto-entrada">
-                <a href="entrada.php">
+                <a href="entrada_1.php">
                     <h4>Terraza en el techo de tu casa </h4>
                     <p class="informacion-meta">Escrito el:<span>20/10/2021</span>por:<span>Admin</span></p>
                     <p>Consejos para construi una terraza en el tech de tu casa con los mejores materiales y
@@ -37,10 +37,10 @@ incluirTemplate('header');
                 <img src="src/img/blog2.jpg" alt="texto entrada blog" loading="lazy">
             </div>
             <div class="texto-entrada">
-                <a href="entrada.php">
-                    <h4>Terraza en el techo de tu casa </h4>
+                <a href="entrada_2.php">
+                    <h4>Piscina Exterior </h4>
                     <p class="informacion-meta">Escrito el:<span>20/10/2021</span>por:<span>Admin</span></p>
-                    <p>Consejos para construi una terraza en el tech de tu casa con los mejores materiales y
+                    <p>Consejos para construi una exterior en tu casa con los mejores materiales y
                         ahorrando dinero</p>
                 </a>
             </div>
@@ -50,10 +50,10 @@ incluirTemplate('header');
                 <img src="src/img/blog3.jpg" alt="texto entrada blog" loading="lazy">
             </div>
             <div class="texto-entrada">
-                <a href="entrada.php">
-                    <h4>Terraza en el techo de tu casa </h4>
+                <a href="entrada_3.php">
+                    <h4>Decoración Interiores </h4>
                     <p class="informacion-meta">Escrito el:<span>20/10/2021</span>por:<span>Admin</span></p>
-                    <p>Consejos para construi una terraza en el tech de tu casa con los mejores materiales y
+                    <p>Consejos para decorar el interior de tu casa con los mejores materiales y
                         ahorrando dinero</p>
                 </a>
             </div>
@@ -63,10 +63,10 @@ incluirTemplate('header');
                 <img src="src/img/blog4.jpg" alt="texto entrada blog" loading="lazy">
             </div>
             <div class="texto-entrada">
-                <a href="entrada.php">
-                    <h4>Terraza en el techo de tu casa </h4>
+                <a href="entrada_4.php">
+                    <h4>Decoración habitaciones </h4>
                     <p class="informacion-meta">Escrito el:<span>20/10/2021</span>por:<span>Admin</span></p>
-                    <p>Consejos para construi una terraza en el tech de tu casa con los mejores materiales y
+                    <p>Consejos para decorar habitaciones de tu casa con los mejores materiales y
                         ahorrando dinero</p>
                 </a>
             </div>

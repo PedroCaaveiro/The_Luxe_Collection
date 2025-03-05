@@ -31,7 +31,8 @@ $resultado = mysqli_query($db, $query);
         <div class="contenido-anuncio">
             <h3><?php echo $propiedad['titulo']; ?></h3>
             <p><?php echo $propiedad['descripcion']; ?></p>
-            <p class="precio"><?php echo $propiedad['precio']; ?>&euro;</p>
+            <p class="precio"><?php echo number_format($propiedad['precio'], 2, ',', '.'); ?> &euro;</p>
+
             <ul class="iconos-caracteristicas">
                 <li>
                     <img src="src/img/icono_wc.svg" alt="icono wc" loading="lazy">

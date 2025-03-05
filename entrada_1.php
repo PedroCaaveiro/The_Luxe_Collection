@@ -23,13 +23,13 @@ incluirTemplate('header');
 
 
 <picture>
-    <img src="src/img/destacada2.jpg" alt="imagen propiedad" loading="lazy">
+    <img src="src/img/blog1.jpg" alt="imagen propiedad" loading="lazy">
 </picture>
 <p class="informacion-meta">Escrito el: <span>20/8/2021</span>por: <span>Admin</span></p>
 <div class="resumen-propiedad">
   
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium suscipit quaerat harum, velit hic tempore itaque quam quasi tenetur consequatur. Maxime atque beatae, explicabo alias suscipit doloribus nobis debitis eligendi?</p>
-    <p>lorem</p>
+    <p>Asegúrate de que la estructura del techo soporte el peso y usa materiales resistentes como madera tratada, acero o concreto. Opta por suelos antideslizantes y cubiertas impermeables para mayor seguridad y durabilidad. Añade barandillas, buena iluminación y vegetación para un espacio funcional y acogedor.</p>
+    
 </div>
 
 </main>

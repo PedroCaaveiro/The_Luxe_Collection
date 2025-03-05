@@ -28,8 +28,8 @@ incluirTemplate('header');
                 <blockquote>
                     25 Años de experiencia
                 </blockquote>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id illo cumque nesciunt esse fuga ipsa debitis aspernatur amet odit perferendis. Corrupti ad aspernatur pariatur deleniti possimus voluptatum beatae voluptate maiores.</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto nulla, provident rerum modi itaque, id optio labore porro error molestiae sunt fugit velit, reprehenderit aliquam rem. Reiciendis quibusdam necessitatibus recusandae?</p>
+                <p>Nuestra inmobiliaria se ha consolidado como un referente en la venta de propiedades exclusivas. Nos especializamos en ofrecer hogares de alto standing que combinan diseño, confort y ubicación privilegiada, garantizando siempre un servicio personalizado y de máxima calidad.</p>
+                <p>Cada propiedad que gestionamos ha sido cuidadosamente seleccionada para cumplir con los más altos estándares. Nuestro equipo de expertos trabaja con compromiso y discreción para encontrar la residencia perfecta para cada cliente, asegurando una experiencia de compra segura, ágil y totalmente satisfactoria.</p>
             </div>
         </div>
     </main>
@@ -40,23 +40,17 @@ incluirTemplate('header');
             <div class="icono">
                 <img src="/src/img/icono1.svg" alt="Icono seguridad" loading="lazy">
                 <h3>Seguridad</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque praesentium harum doloremque
-                    sapiente, voluptatibus quas tempora veritatis? Voluptas ratione dignissimos totam eaque vel
-                    quibusdam quas nesciunt exercitationem, iusto placeat eveniet?</p>
+                <p>En nuestra inmobiliaria, la confianza y la transparencia son fundamentales. Garantizamos a nuestros clientes un proceso de compra seguro, ágil y sin sorpresas.</p>
             </div>
             <div class="icono">
                 <img src="/src/img/icono2.svg" alt="Icono Precio" loading="lazy">
                 <h3>Precio</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque praesentium harum doloremque
-                    sapiente, voluptatibus quas tempora veritatis? Voluptas ratione dignissimos totam eaque vel
-                    quibusdam quas nesciunt exercitationem, iusto placeat eveniet?</p>
+                <p>Ofrecemos propiedades exclusivas con una excelente relación calidad-precio, ajustadas al mercado y sin costos ocultos. Te garantizamos transparencia total y asesoramiento para una inversión segura.</p>
             </div>
             <div class="icono">
                 <img src="/src/img/icono3.svg" alt="Icono Tiempo" loading="lazy">
                 <h3>Tiempo</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque praesentium harum doloremque
-                    sapiente, voluptatibus quas tempora veritatis? Voluptas ratione dignissimos totam eaque vel
-                    quibusdam quas nesciunt exercitationem, iusto placeat eveniet?</p>
+                <p>Agilizamos todo el proceso para que puedas disfrutar de tu nuevo hogar en el menor tiempo posible. Nos encargamos de cada detalle para una compra rápida y sin complicaciones.</p>
             </div>
         </div>
     </section>
