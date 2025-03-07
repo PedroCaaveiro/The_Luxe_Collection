@@ -7,7 +7,7 @@ $_SESSION = [];
 session_destroy();
 
 
-// Eliminar la cookie de sesión si existe
+// Elimina la cookie de sesión si existe
 if (isset($_COOKIE[session_name()])) {
     setcookie(session_name(), '', time() - 3600, '/');
 }

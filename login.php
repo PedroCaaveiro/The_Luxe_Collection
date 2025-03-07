@@ -1,5 +1,5 @@
 <?php
-session_start(); // Esto debe estar en la parte superior de tu archivo
+session_start(); 
 
 
 require_once __DIR__ . '../includes/templates/funciones.php';

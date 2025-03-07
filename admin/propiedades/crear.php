@@ -1,22 +1,26 @@
 <?php
+//  Incluyo  archivo que contiene funciones necesarias para esta página.
 
 require_once 'funciones.php';
 
+//  Incluyo  funciones.que contiene lso templates del header & footer
 require_once '../../includes/templates/funciones.php';
+
+ //  Si el usuario no está autenticado, lo redirijo a la página de login.
 if (!verificarUsuario()) {
-    // Si el usuario no está logueado, redirige a login.php
+   
     header('Location: /login.php');
+    //  Detengo la ejecución del script para evitar que se ejecute código después de la redirección.
     exit;
 }
 
+//  Recupero los errores almacenados en la sesión, si existen.
 $errores = $_SESSION['errores'] ?? [];
 
+//  Limpio la variable de errores para que no se muestren en la siguiente carga.
 unset($_SESSION['errores']);
 
-
-
-
-
+//  Llamo a la función que inserta el header.
 incluirTemplate("header");
 ?>
 
@@ -81,11 +85,13 @@ incluirTemplate("header");
                 <option value="" disabled selected>Seleccionar Vendedor</option>
 
                 <?php
+                 //  Si hay vendedores en la sesión, los muestro en el select.
                 if (!empty($_SESSION['vendedores'])) {
                     foreach ($_SESSION['vendedores'] as $vendedor) {
                         echo "<option value='" . htmlspecialchars($vendedor['id']) . "'>" . htmlspecialchars($vendedor['nombre']) . " " .  htmlspecialchars($vendedor['apellido']) . "</option>";
                     }
                 } else {
+                    //  Si no hay vendedores disponibles, muestro una opción deshabilitada.
                     echo "<option value='' disabled>No hay vendedores disponibles</option>";
                 }
                 ?>

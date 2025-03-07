@@ -1,25 +1,32 @@
 <?php
+//  Incluyo  archivo que contiene funciones necesarias para esta página.
 require_once 'funciones.php'; 
+// Incluyo archivo que contiene el template para header & footer.
+require_once '../../includes/templates/funciones.php'; 
 
-
+//  Obtengo el ID desde la URL y lo valido como un número entero.
 $id = $_GET['id'];
 $id = filter_var($id,FILTER_VALIDATE_INT);
 
+//  Si el ID no es válido, redirijo al usuario al panel de administración.
 if (!$id) {
     header('Location: /admin');
 }
 
-
+//  Recupero los errores almacenados en la sesión, si existen.
 $errores = $_SESSION['errores'] ?? [];
+//  Limpio la variable de errores para que no se muestren en la siguiente carga.
 unset($_SESSION['errores']); 
-require_once '../../includes/templates/funciones.php';
 
+
+ //  Si el usuario no está logueado, lo redirijo a la página de login.
 if (!verificarUsuario()) {
-    // Si el usuario no está logueado, redirige a login.php
+   
     header('Location: /login.php');
+    //  Detengo la ejecución del script para evitar que se ejecute código después de la redirección.
     exit;
 }
-
+//  Llamo a la funcion  que  inserta el header de la página.
 incluirTemplate("header");
 ?>
 
@@ -50,12 +57,13 @@ if (isset($_GET['mensaje']) && $_GET['mensaje'] == 'exito') {
     <form class="formulario" method="POST" action="funciones.php" enctype="multipart/form-data">
 
 <?php
+//  Recupero los datos de la propiedad desde la sesión si existen.
     if (isset($_SESSION['resultadoPropiedad'])) {
         $resultadoPropiedad = $_SESSION['resultadoPropiedad'];
     }
 ?>
 
-<!-- 📌 Campo oculto para enviar el ID de la propiedad -->
+<!--  Campo oculto para enviar el ID de la propiedad -->
 <input type="hidden" name="id" value="<?php echo isset($resultadoPropiedad['id']) ? $resultadoPropiedad['id'] : ''; ?>">
 
 <fieldset>

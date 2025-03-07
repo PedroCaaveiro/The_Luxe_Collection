@@ -1,17 +1,19 @@
 <?php
 
+// Inicio la sesión si no está iniciada
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 
-
+// Incluyo el archivo de configuración para conectar con la base de datos
 require_once __DIR__ . '/../../includes/config/database.php';
 
 
-
+// Conecto a la base de datos
 $db = conectarDb();
 
+// Defino variables vacías para almacenar los datos del formulario
 $titulo = '';
 $precio = '';
 $imagen = '';
@@ -24,7 +26,7 @@ $vendedores_id = '';
 $errores = [];
 
 
-
+// Verifico si se ha enviado el formulario mediante POST
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
     // Primero verificamos si es una acción de eliminación
     if (isset($_POST['eliminar'])) {
@@ -36,15 +38,17 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
     if (isset($_POST['email']) && isset($_POST['password'])) {
         $erroresLogin = validarUsuario($db, $_POST['email'], $_POST['password']);
         if (!empty($erroresLogin)) {
-            $_SESSION['erroresLogin'] = $erroresLogin; // Guardamos los errores de login en la sesión
-            header("Location: ../../login.php"); // Redirigimos a la página de login (por ejemplo)
+            $_SESSION['erroresLogin'] = $erroresLogin; 
+            // Redirijo al login si hay errores
+            header("Location: ../../login.php"); 
             exit;
         }
     }
 
-    // Validación de la propiedad: validamos solo si no hay errores de login
+     // Solo valido la propiedad si no hubo errores de login
     if (empty($erroresLogin)) {
         $erroresPropiedad = [];
+         // Sanitizo los datos antes de guardarlos en la base de datos
         $titulo = mysqli_real_escape_string($db, $_POST['titulo']);
         $precio =  mysqli_real_escape_string($db, $_POST['precio']);
         $descripcion =  mysqli_real_escape_string($db, $_POST['descripcion']);
@@ -54,24 +58,26 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
         $vendedores_id = isset($_POST['vendedor']) ? mysqli_real_escape_string($db, $_POST['vendedor']) : null;
 
         $id = isset($_POST['id']) ? (int) $_POST['id'] : null;
+        // Genero la fecha actual
         $creado = date('Y/m/d');
 
-        // Usamos la función de validación de la propiedad
+        // Valido los datos de la propiedad y la imagen
         $resultado = validarPropiedadYImagen($titulo, $precio, $descripcion, $habitaciones, $wc, $estacionamiento, $vendedores_id, $db);
         $erroresPropiedad = $resultado['errores'];
 
         if (!empty($erroresPropiedad)) {
-            $_SESSION['erroresPropiedad'] = $erroresPropiedad; // Guardamos los errores de la propiedad
-            header("Location: crear.php"); // Redirigimos a la página de crear
+            $_SESSION['erroresPropiedad'] = $erroresPropiedad;
+            // Redirijo a la página de creación si hay errores 
+            header("Location: crear.php"); 
             exit;
         } else {
             $imagen = $resultado['imagen']; 
-
+  // Si no hay ID, muevo la imagen a la carpeta de imágenes
             if (!$id) {
                 $carpetaImagenes = '../../imagenes/';
                 move_uploaded_file($_FILES['imagen']['tmp_name'], $carpetaImagenes . $imagen);
             }
-
+ // Si hay ID, actualizo la propiedad; si no, la creo
             if ($id) {
                 actualizar($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc, $estacionamiento, $vendedores_id, $id);
             } else {
@@ -85,7 +91,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 function validarUsuario($db,$email,$password){
 
     $errores = [];
-
+  // Valido el email
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
     if (!$email) {
         $errores[] = 'El email es obligatorio o no es válido';
@@ -94,7 +100,7 @@ function validarUsuario($db,$email,$password){
     if (!$password) {
         $errores[] = 'El password es obligatorio';
     }
-
+  // Consulto en la base de datos si el usuario existe
     if (empty($errores)) {
         $query = "SELECT * FROM usuarios WHERE email = ?";
         $stmt = mysqli_prepare($db, $query);
@@ -104,11 +110,12 @@ function validarUsuario($db,$email,$password){
 
         if ($resultado && $resultado->num_rows > 0) {
             $usuario = mysqli_fetch_assoc($resultado);
+            // Verifico la contraseña con hash
             if (password_verify($password, $usuario['password'])) {
                 session_start();
                 $_SESSION['usuario'] = $usuario['email'];
                 $_SESSION['login'] = true;
-                header("Location: ../index.php"); // Redirigir al usuario
+                header("Location: ../index.php"); 
                 exit;
             } else {
                 $errores[] = 'El password es incorrecto';
@@ -118,21 +125,21 @@ function validarUsuario($db,$email,$password){
         }
     }
 
-     // Guardar los errores en la sesión si los hay
+     // Guardao los errores en la sesión si los hay
      if (!empty($errores)) {
-        session_start();  // Inicia la sesión si aún no se ha hecho
+        session_start();  // Inicio la sesión si aún no se ha hecho
         $_SESSION['erroresLogin'] = $errores;
     }
     
     return $errores; // Devuelve los errores para mostrarlos en el formulario
 }
 function verificarUsuario() {
-    // Verificar si la sesión ya está iniciada antes de llamarla
+    // Verifico si la sesión ya está iniciada antes de llamarla
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
 
-    // Verificar si el usuario está logueado
+    // Verifico si el usuario está logueado
     if (isset($_SESSION['login']) && $_SESSION['login'] === true) {
         return true;  // Usuario está logueado
     }
@@ -146,7 +153,7 @@ function verificarUsuario() {
 function validarPropiedadYImagen($titulo, $precio, $descripcion, $habitaciones, $wc, $estacionamiento, $vendedores_id, $db) {
     $errores = [];
 
-    // Validación de campos de la propiedad
+    // Valido los campos de la propiedad
     if (empty($titulo)) {
         $errores[] = "Añadir el título";
     }
@@ -175,7 +182,7 @@ function validarPropiedadYImagen($titulo, $precio, $descripcion, $habitaciones, 
         $errores[] = "Añadir el vendedor";
     }
 
-    // Validación de la imagen (sin subirla aún)
+    // Valido la imagen (sin subirla aún)
     $imagen = null;
 
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
@@ -186,7 +193,7 @@ function validarPropiedadYImagen($titulo, $precio, $descripcion, $habitaciones, 
             $errores[] = "La imagen es demasiado grande";
         }
 
-        // Si no hay errores, solo generamos el nombre de la imagen (pero aún no la guardamos)
+        // Si no hay errores, solo genera el nombre de la imagen (pero aún no la guarda)
         if (empty($errores)) {
             $imagen = md5(uniqid(rand(), true)) . ".jpg";
         }
@@ -208,7 +215,7 @@ function crear($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc,
 
     $stmt = mysqli_prepare($db, $query);
 
-    // Verificamos si la preparación fue exitosa
+    // Verifico si la preparación fue exitosa
     if ($stmt === false) {
         echo "Error en la preparación de la consulta: " . mysqli_error($db);
         return;
@@ -217,7 +224,7 @@ function crear($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc,
 
     $resultado = mysqli_stmt_execute($stmt);
 
-    // Verificamos si la inserción fue exitosa
+    // Verifico si la inserción fue exitosa
     if ($resultado) {
         header("location: crear.php?mensaje=exito");
         exit();
@@ -232,28 +239,28 @@ function crear($db, $titulo, $precio, $imagen, $descripcion, $habitaciones, $wc,
 function crearCarpeta($imagen, $db) {
     $carpetaImagenes = '../../imagenes/';
 
-    // Asegurarse de que la consulta de propiedades se ejecutó antes
+    // confirmo de que la consulta de propiedades se ejecutó antes
     if (!isset($_SESSION['resultadoPropiedad']) || empty($_SESSION['resultadoPropiedad'])) {
         return null; // No se encontró la propiedad
     }
 
     $propiedad = $_SESSION['resultadoPropiedad'];
-    $id = $propiedad['id']; // Obtener el ID desde la sesión
+    $id = $propiedad['id']; // Obtengo el ID desde la sesión
 
     if (!empty($propiedad['imagen'])) {
         $imagenAnterior = $carpetaImagenes . $propiedad['imagen'];
 
-        // Si la imagen existe, eliminarla
+        // Si la imagen existe, la elimina
         if (file_exists($imagenAnterior)) {
             unlink($imagenAnterior);
         }
     }
 
-    // Subir la nueva imagen
+    // Sube la nueva imagen
     $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
     move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
 
-    // Actualizar la base de datos con la nueva imagen
+    // consulta para actualizar la base de datos con la nueva imagen
     $sqlUpdate = "UPDATE propiedades SET imagen = '$nombreImagen' WHERE id = $id";
     mysqli_query($db, $sqlUpdate);
 
@@ -290,11 +297,11 @@ function mostrarResultados($db) {
 
     $propiedades = [];
     while ($propiedad = mysqli_fetch_assoc($resultado)) {
-        $propiedades[] = $propiedad; // Almacenar cada propiedad en un array
+        $propiedades[] = $propiedad; // Almacena cada propiedad en un array
     }
 
-    mysqli_free_result($resultado); // Liberar memoria
-    $_SESSION['propiedades'] = $propiedades; // Devolver el array con los datos
+    mysqli_free_result($resultado); // Libera memoria
+    $_SESSION['propiedades'] = $propiedades; // Devuelve el array con los datos
 
   
 }
@@ -329,9 +336,9 @@ function actualizar($db, $titulo, $precio, $imagen, $descripcion, $habitaciones,
     $estacionamiento = (int) $estacionamiento;
     $vendedores_id = (int) $vendedores_id;
 
-    // Si se subió una nueva imagen, manejar la actualización
+    // Si se subió una nueva imagen, maneja la actualización
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-        $imagen = crearCarpeta($_FILES['imagen'], $db); // Pasar el arreglo $_FILES['imagen']
+        $imagen = crearCarpeta($_FILES['imagen'], $db); 
     }
 
     // Consulta SQL de actualización
@@ -344,14 +351,14 @@ function actualizar($db, $titulo, $precio, $imagen, $descripcion, $habitaciones,
             estacionamiento = $estacionamiento,
             vendedores_id = $vendedores_id";
 
-    // Si hay una imagen nueva, actualizar el campo imagen
+    // Si hay una imagen nueva, actualiza el campo imagen
     if ($imagen) {
         $query .= ", imagen = '$imagen'";
     }
 
     $query .= " WHERE id = $id";
 
-    // Ejecutar la consulta
+    // Ejecuta la consulta
     $resultado = mysqli_query($db, $query);
 
     if ($resultado) {
