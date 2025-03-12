@@ -39,10 +39,23 @@ table.propiedades{
 .imagenPropiedad{
     width: 50rem;
 
-    @include m.telefono{
+   
+}
 
-       
+@include m.telefono{
 
-
+    table.propiedades {
+        display: block;
+        overflow-x: auto; // Permite desplazamiento horizontal
+    }
+  
+    th, td {
+        padding: .1rem;
+        font-size: 0.9rem; // Reduce el tamaño del texto
+    }
+  
+    .imagenPropiedad {
+        width: 100%; // La imagen se adapta a la pantalla
+        max-width: 10rem; // Límite de tamaño para evitar desbordes
     }
 }

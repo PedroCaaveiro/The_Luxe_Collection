@@ -1112,4 +1112,19 @@ table.propiedades a {
 .imagenPropiedad {
   width: 50rem;
 }
+
+@media (max-width: 480px) {
+  table.propiedades {
+    display: block;
+    overflow-x: auto;
+  }
+  th, td {
+    padding: 0.1rem;
+    font-size: 0.9rem;
+  }
+  .imagenPropiedad {
+    width: 100%;
+    max-width: 10rem;
+  }
+}
 /*# sourceMappingURL=app.css.map */
