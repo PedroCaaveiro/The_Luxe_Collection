@@ -1,1 +1,0 @@
-SELECT * FROM the_luxe_collection.propiedades;usuarios
