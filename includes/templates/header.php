@@ -15,7 +15,7 @@ $auth = verificarUsuario();
     <div class="contenedor contenido_header">
         <div class="barra">
 
-            <img src="/src/img/logo.png" alt="logotipo de bienes raices">
+            <img src="src/img/logo.png" alt="logotipo de bienes raices">
 
             <div class="mobile-menu">
                 <img src="/src/img/barras.svg" alt="menu responsive">
