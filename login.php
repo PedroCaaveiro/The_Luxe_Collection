@@ -2,8 +2,12 @@
 session_start(); 
 
 
-require_once __DIR__ . '../includes/templates/funciones.php';
-require_once '../The_Luxe_Collection/includes/config/database.php';
+require_once 'includes/templates/funciones.php';
+
+
+
+
+require_once 'includes/config/database.php';
 
 $db = conectarDb();
 

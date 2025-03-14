@@ -18,7 +18,7 @@ $propiedades = $_SESSION['propiedades'] ?? [];
 <main class="contenedor seccion">
     <h1>Administrador The Luxe Collection</h1>
 
-    <a href="/admin/propiedades/crear.php" class="boton boton-verde">Crear</a>
+    <a href="propiedades/crear.php" class="boton boton-verde">Crear</a>
 
     <table class="propiedades">
         <thead>
@@ -58,7 +58,7 @@ $propiedades = $_SESSION['propiedades'] ?? [];
                                 <input type="hidden" name="id" value="<?= $propiedad['id']; ?>"> <!-- Enviar el ID de la propiedad -->
                                 <input type="submit" name="eliminar" value="Eliminar" class="boton-rojo-block">
                             </form>
-                            <a class="boton-verde-block" href="../admin/propiedades/actualizar.php?id=<?= $propiedad['id']; ?>">Actualizar</a>
+                            <a class="boton-verde-block" href="propiedades/actualizar.php?id=<?= $propiedad['id']; ?>">Actualizar</a>
                         </div>
                     </td>
 
