@@ -14,7 +14,7 @@
 
 require_once 'includes/templates/funciones.php';
 
-incluirTemplate('header',$inicio = true);
+incluirTemplate('header',true);
 
 ?>
 
