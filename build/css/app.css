@@ -410,7 +410,7 @@ html, body {
 }
 
 .inicio {
-  background-image: url(/src/img/header.jpg);
+  background-image: url("/src/img/header.jpg");
 }
 
 .header {
@@ -850,7 +850,7 @@ html, body {
 }
 
 .imagen-contacto {
-  background-image: url(/src/img/encuentra.jpg);
+  background-image: url("/src/img/encuentra.jpg");
   background-position: center center;
   background-size: cover;
   padding: 10rem;

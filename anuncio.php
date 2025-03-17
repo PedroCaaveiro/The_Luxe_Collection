@@ -10,7 +10,7 @@
 
 <body>
  
-<body>
+
   
 <?php
 
@@ -43,7 +43,7 @@ $propiedad = mysqli_fetch_assoc($resultado);
     <img src="/imagenes/<?php echo $propiedad['imagen']?>" alt="imagen propiedad" loading="lazy">
 
 <div class="resumen-propiedad">
-    <p class="precio"><?php echo $propiedad['precio'] ?>&euro;</p>
+<p class="precio"><?php echo number_format($propiedad['precio'], 2, ',', '.'); ?> &euro;</p>
     <ul class="iconos-caracteristicas">
         <li>
             <img src="src/img/icono_wc.svg" alt="icono wc" loading="lazy">

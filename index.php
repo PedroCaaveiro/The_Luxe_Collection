@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Luxe Collection</title>
-    <link rel="stylesheet" href="build/css/app.css">
+  
 </head>
 
 <body>
@@ -22,17 +22,17 @@ incluirTemplate('header',true);
         <h1>Mas sobre Nosotros</h1>
         <div class="iconos-nosotros">
             <div class="icono">
-                <img src="/src/img/icono1.svg" alt="Icono seguridad" loading="lazy">
+                <img src="src/img/icono1.svg" alt="Icono seguridad" loading="lazy">
                 <h3>Seguridad</h3>
                 <p>En nuestra inmobiliaria, la confianza y la transparencia son fundamentales. Garantizamos a nuestros clientes un proceso de compra seguro, ágil y sin sorpresas.</p>
             </div>
             <div class="icono">
-                <img src="/src/img/icono2.svg" alt="Icono Precio" loading="lazy">
+                <img src="src/img/icono2.svg" alt="Icono Precio" loading="lazy">
                 <h3>Precio</h3>
                 <p>Ofrecemos propiedades exclusivas con una excelente relación calidad-precio, ajustadas al mercado y sin costos ocultos. Te garantizamos transparencia total y asesoramiento para una inversión segura.</p>
             </div>
             <div class="icono">
-                <img src="/src/img/icono3.svg" alt="Icono Tiempo" loading="lazy">
+                <img src="src/img/icono3.svg" alt="Icono Tiempo" loading="lazy">
                 <h3>Tiempo</h3>
                 <p>Agilizamos todo el proceso para que puedas disfrutar de tu nuevo hogar en el menor tiempo posible. Nos encargamos de cada detalle para una compra rápida y sin complicaciones.</p>
             </div>

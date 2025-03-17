@@ -1,6 +1,18 @@
+
+
+
 <?php
 require_once "propiedades/funciones.php";
-require_once __DIR__ . '/../includes/templates/funciones.php';
+require_once __DIR__ . '../../includes/templates/funciones.php';
+
+
+
+
+
+
+
+
+
 
 if (!verificarUsuario()) {
     // Si el usuario no está logueado, redirige a login.php

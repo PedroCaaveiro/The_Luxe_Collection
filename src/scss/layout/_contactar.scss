@@ -2,7 +2,7 @@
 @use '../base/variables' as v;
 
 .imagen-contacto{
-    background-image: url(/src/img/encuentra.jpg);
+    background-image: url("/src/img/encuentra.jpg");
     background-position: center center;
     background-size: cover;
     padding: v.$separacion * 2;

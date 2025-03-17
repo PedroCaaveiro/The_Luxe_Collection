@@ -1,10 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Luxe Collection</title>
+    
+   
+</head>
+
+<body>
+
 <?php
 //  Incluyo  archivo que contiene funciones necesarias para esta página.
 require_once 'funciones.php'; 
 // Incluyo archivo que contiene el template para header & footer.
-require_once '../../includes/templates/funciones.php'; 
+require_once realpath(__DIR__ . '/../../includes/templates/funciones.php');
 
-//  Obtengo el ID desde la URL y lo valido como un número entero.
+
+
+// Obtengo el ID desde la URL y lo valido como un número entero.
 $id = $_GET['id'];
 $id = filter_var($id,FILTER_VALIDATE_INT);
 
@@ -116,3 +131,7 @@ incluirTemplate("footer");
 ?>
 
 <script src="../../src/js/app.js"></script>
+
+</body>
+
+</html>
